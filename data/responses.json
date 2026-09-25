@@ -1,0 +1,703 @@
+[
+  {
+    "id": "resp-1790354683841-1kh7vi",
+    "respondent_type": "student",
+    "respondent_type_label": "Student / Club Lead",
+    "respondent_name": "aditi",
+    "college": "ku",
+    "department": "CSE",
+    "role": "Student / Club Lead",
+    "email": "aditi@gmail.com",
+    "phone": "+91 12345567890",
+    "answers": {
+      "gate": "student",
+      "D1": "CSE",
+      "D2": "No project yet",
+      "D8": "Sponsored GPU credits",
+      "D9": "Nothing",
+      "D10": {
+        "reach_channels": [
+          "WhatsApp"
+        ],
+        "club_size": "30 to 100",
+        "campus_ambassador": "Yes",
+        "chapter": "E-Cell",
+        "contact_name": "aditi",
+        "contact_college": "ku",
+        "contact_email": "aditi@gmail.com",
+        "contact_phone": "+91 12345567890"
+      }
+    },
+    "survey_path": [
+      {
+        "questionId": "D1",
+        "stepNumber": 1,
+        "questionTitle": "Which department are you studying in?",
+        "answerSummary": "CSE",
+        "rawAnswer": "CSE"
+      },
+      {
+        "questionId": "D2",
+        "stepNumber": 2,
+        "questionTitle": "What kind of project have you done, or are you doing, in your department?",
+        "answerSummary": "No project yet",
+        "rawAnswer": "No project yet"
+      },
+      {
+        "questionId": "D8",
+        "stepNumber": 8,
+        "questionTitle": "For your next project, which ONE free thing would help most?",
+        "answerSummary": "Sponsored GPU credits",
+        "rawAnswer": "Sponsored GPU credits"
+      },
+      {
+        "questionId": "D9",
+        "stepNumber": 9,
+        "questionTitle": "Would you pay for that, and how much per month?",
+        "answerSummary": "Nothing",
+        "rawAnswer": "Nothing"
+      },
+      {
+        "questionId": "D10",
+        "stepNumber": 10,
+        "questionTitle": "Can your club share this survey or host a 30-minute session, in exchange for a free workshop?",
+        "answerSummary": "WhatsApp | 30 to 100 | Yes | E-Cell | aditi | ku | aditi@gmail.com | +91 12345567890",
+        "rawAnswer": {
+          "reach_channels": [
+            "WhatsApp"
+          ],
+          "club_size": "30 to 100",
+          "campus_ambassador": "Yes",
+          "chapter": "E-Cell",
+          "contact_name": "aditi",
+          "contact_college": "ku",
+          "contact_email": "aditi@gmail.com",
+          "contact_phone": "+91 12345567890"
+        }
+      }
+    ],
+    "pilot_interest": "Yes",
+    "consent": true,
+    "time_spent_seconds": 96,
+    "created_at": "2026-09-25T16:44:43.841Z",
+    "metadata": {
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15",
+      "submittedAt": "2026-09-25T16:44:43.841Z"
+    }
+  },
+  {
+    "id": "resp-sample-student-01",
+    "respondent_type": "student",
+    "respondent_type_label": "Student / Club Lead",
+    "respondent_name": "Aarav Sharma",
+    "college": "RV College of Engineering, Bengaluru",
+    "department": "CSE",
+    "role": "IEEE Student Chapter Lead",
+    "email": "aarav.sharma@rvce.edu.in",
+    "phone": "+91 98450 12345",
+    "answers": {
+      "D1": "CSE",
+      "D2": "AI / ML (vision, NLP, LLM chatbot, agents)",
+      "D3": "Left it midway",
+      "D4": "3 to 6 months",
+      "D5": "Never finished",
+      "D6": [
+        "Compute / GPU",
+        "Mentor or senior guidance"
+      ],
+      "D7": {
+        "handle_method": "Free tools (Colab, Kaggle)",
+        "compute_hardware": "Colab / Kaggle"
+      },
+      "D8": "Sponsored GPU credits",
+      "D9": "Rs. 300 to 1,000",
+      "D10": {
+        "reach_channels": [
+          "WhatsApp",
+          "Discord",
+          "Instagram"
+        ],
+        "club_size": "30 to 100",
+        "campus_ambassador": "Yes",
+        "chapter": "IEEE",
+        "contact_name": "Aarav Sharma",
+        "contact_college": "RV College of Engineering, Bengaluru",
+        "contact_email": "aarav.sharma@rvce.edu.in",
+        "contact_phone": "+91 98450 12345",
+        "consent": true
+      }
+    },
+    "survey_path": [
+      {
+        "questionId": "D1",
+        "stepNumber": 1,
+        "questionTitle": "Which department are you studying in?",
+        "answerSummary": "CSE",
+        "rawAnswer": "CSE"
+      },
+      {
+        "questionId": "D2",
+        "stepNumber": 2,
+        "questionTitle": "What kind of project have you done, or are you doing, in your department?",
+        "answerSummary": "AI / ML (vision, NLP, LLM chatbot, agents)",
+        "rawAnswer": "AI / ML (vision, NLP, LLM chatbot, agents)"
+      },
+      {
+        "questionId": "D3",
+        "stepNumber": 3,
+        "questionTitle": "Is that project completed?",
+        "answerSummary": "Left it midway",
+        "rawAnswer": "Left it midway"
+      },
+      {
+        "questionId": "D4",
+        "stepNumber": 4,
+        "questionTitle": "How long has it been so far (or how long since you started)?",
+        "answerSummary": "3 to 6 months",
+        "rawAnswer": "3 to 6 months"
+      },
+      {
+        "questionId": "D5",
+        "stepNumber": 5,
+        "questionTitle": "Compared with your original plan, how did the timeline go?",
+        "answerSummary": "Never finished",
+        "rawAnswer": "Never finished"
+      },
+      {
+        "questionId": "D6",
+        "stepNumber": 6,
+        "questionTitle": "What slowed you down most? Pick up to 2.",
+        "answerSummary": "Compute / GPU, Mentor or senior guidance",
+        "rawAnswer": [
+          "Compute / GPU",
+          "Mentor or senior guidance"
+        ]
+      },
+      {
+        "questionId": "D7",
+        "stepNumber": 7,
+        "questionTitle": "How did you handle that?",
+        "answerSummary": "Free tools (Colab, Kaggle) (Ran on: Colab / Kaggle)",
+        "rawAnswer": {
+          "handle_method": "Free tools (Colab, Kaggle)",
+          "compute_hardware": "Colab / Kaggle"
+        }
+      },
+      {
+        "questionId": "D8",
+        "stepNumber": 8,
+        "questionTitle": "For your next project, which ONE free thing would help most?",
+        "answerSummary": "Sponsored GPU credits",
+        "rawAnswer": "Sponsored GPU credits"
+      },
+      {
+        "questionId": "D9",
+        "stepNumber": 9,
+        "questionTitle": "Would you pay for that, and how much per month?",
+        "answerSummary": "Rs. 300 to 1,000",
+        "rawAnswer": "Rs. 300 to 1,000"
+      },
+      {
+        "questionId": "D10",
+        "stepNumber": 10,
+        "questionTitle": "Can your club share this survey or host a 30-minute session, in exchange for a free workshop?",
+        "answerSummary": "Ambassador: Yes | Chapter: IEEE | Reach: WhatsApp, Discord, Instagram",
+        "rawAnswer": {
+          "reach_channels": [
+            "WhatsApp",
+            "Discord",
+            "Instagram"
+          ],
+          "club_size": "30 to 100",
+          "campus_ambassador": "Yes",
+          "chapter": "IEEE"
+        }
+      }
+    ],
+    "pilot_interest": "Yes",
+    "consent": true,
+    "time_spent_seconds": 195,
+    "created_at": "2026-09-24T18:15:00Z"
+  },
+  {
+    "id": "resp-sample-faculty-01",
+    "respondent_type": "faculty",
+    "respondent_type_label": "HOD / Faculty",
+    "respondent_name": "Dr. Ramesh Kulkarni",
+    "college": "PES University, Bengaluru",
+    "department": "Computer Science & Engineering",
+    "role": "Professor & Lab in-charge",
+    "email": "ramesh.kulkarni@pes.edu",
+    "phone": "+91 94480 67890",
+    "answers": {
+      "B1": {
+        "college_name": "PES University",
+        "city_state": "Bengaluru, Karnataka",
+        "department": "Computer Science & Engineering",
+        "role": "Professor"
+      },
+      "B2": [
+        "Machine learning",
+        "Deep learning / computer vision",
+        "NLP / LLM chatbots"
+      ],
+      "B3": "25 to 50%",
+      "B4": "Over 6 months, often spills into the next semester",
+      "B5": [
+        "GPU / compute access",
+        "Mentorship",
+        "Datasets"
+      ],
+      "B6": [
+        "Personal laptops",
+        "Free cloud tiers (Colab, Kaggle)",
+        "They reduce project scope"
+      ],
+      "B7": {
+        "faculty_comfort": 2,
+        "fdp_preference": "One-week FDP"
+      },
+      "B8": {
+        "primary_support": "Lab sandbox with curriculum modules",
+        "preferred_model": "Subscribe"
+      },
+      "B9": {
+        "decider": "HOD",
+        "proof_needed": [
+          "Pilot results",
+          "Mapping to university syllabus",
+          "Data privacy"
+        ]
+      },
+      "B10": {
+        "pilot_interest": [
+          "Pilot with a project batch",
+          "Host a faculty workshop"
+        ],
+        "contact_name": "Dr. Ramesh Kulkarni",
+        "contact_email": "ramesh.kulkarni@pes.edu",
+        "contact_phone": "+91 94480 67890",
+        "consent": true
+      }
+    },
+    "survey_path": [
+      {
+        "questionId": "B1",
+        "stepNumber": 1,
+        "questionTitle": "Which college, department and role do you have?",
+        "answerSummary": "PES University | CSE | Professor",
+        "rawAnswer": {
+          "college_name": "PES University",
+          "city_state": "Bengaluru, Karnataka",
+          "department": "CSE",
+          "role": "Professor"
+        }
+      },
+      {
+        "questionId": "B2",
+        "stepNumber": 2,
+        "questionTitle": "Which project areas do your final-year students choose most?",
+        "answerSummary": "Machine learning, Deep learning / computer vision, NLP / LLM chatbots",
+        "rawAnswer": [
+          "Machine learning",
+          "Deep learning / computer vision",
+          "NLP / LLM chatbots"
+        ]
+      },
+      {
+        "questionId": "B3",
+        "stepNumber": 3,
+        "questionTitle": "Of those projects, roughly what share finish on time?",
+        "answerSummary": "25 to 50%",
+        "rawAnswer": "25 to 50%"
+      },
+      {
+        "questionId": "B4",
+        "stepNumber": 4,
+        "questionTitle": "From topic approval to completion, how long does a typical project take?",
+        "answerSummary": "Over 6 months, often spills into the next semester",
+        "rawAnswer": "Over 6 months, often spills into the next semester"
+      },
+      {
+        "questionId": "B5",
+        "stepNumber": 5,
+        "questionTitle": "What is the main reason projects run late or fail? Rank the top 3.",
+        "answerSummary": "1. GPU / compute access, 2. Mentorship, 3. Datasets",
+        "rawAnswer": [
+          "GPU / compute access",
+          "Mentorship",
+          "Datasets"
+        ]
+      },
+      {
+        "questionId": "B6",
+        "stepNumber": 6,
+        "questionTitle": "How do students currently work around that problem?",
+        "answerSummary": "Personal laptops, Free cloud tiers (Colab, Kaggle), They reduce project scope",
+        "rawAnswer": [
+          "Personal laptops",
+          "Free cloud tiers (Colab, Kaggle)",
+          "They reduce project scope"
+        ]
+      },
+      {
+        "questionId": "B7",
+        "stepNumber": 7,
+        "questionTitle": "Can you and your colleagues guide students on hands-on GenAI?",
+        "answerSummary": "Comfort: 2/5 | Prefers: One-week FDP",
+        "rawAnswer": {
+          "faculty_comfort": 2,
+          "fdp_preference": "One-week FDP"
+        }
+      },
+      {
+        "questionId": "B8",
+        "stepNumber": 8,
+        "questionTitle": "Which single support would best fix the main problem from Q5?",
+        "answerSummary": "Lab sandbox with curriculum modules | Model: Subscribe",
+        "rawAnswer": {
+          "primary_support": "Lab sandbox with curriculum modules",
+          "preferred_model": "Subscribe"
+        }
+      },
+      {
+        "questionId": "B9",
+        "stepNumber": 9,
+        "questionTitle": "Who decides on adopting that support, and what proof would you need?",
+        "answerSummary": "Decider: HOD | Proof: Pilot results, Syllabus mapping, Data privacy",
+        "rawAnswer": {
+          "decider": "HOD"
+        }
+      },
+      {
+        "questionId": "B10",
+        "stepNumber": 10,
+        "questionTitle": "Would you run a pilot with a final-year batch or host a workshop?",
+        "answerSummary": "Pilot with a project batch, Host a faculty workshop",
+        "rawAnswer": {
+          "pilot_interest": [
+            "Pilot with a project batch",
+            "Host a faculty workshop"
+          ]
+        }
+      }
+    ],
+    "pilot_interest": "Pilot with a project batch, Host a faculty workshop",
+    "consent": true,
+    "time_spent_seconds": 240,
+    "created_at": "2026-09-24T18:40:00Z"
+  },
+  {
+    "id": "resp-sample-tpo-01",
+    "respondent_type": "tpo",
+    "respondent_type_label": "Training & Placement Officer",
+    "respondent_name": "Siddharth Verma",
+    "college": "BMS College of Engineering, Bengaluru",
+    "department": "Placement & Career Guidance Cell",
+    "role": "Training & Placement Officer",
+    "email": "tpo.siddharth@bmsce.ac.in",
+    "phone": "+91 97411 22334",
+    "answers": {
+      "C1": {
+        "college_name": "BMS College of Engineering, Bengaluru",
+        "batch_size": "120 to 250"
+      },
+      "C2": "60 to 80%",
+      "C3": [
+        "IT services",
+        "Product companies",
+        "Startups",
+        "AI-focused firms"
+      ],
+      "C4": [
+        "Depth in practical projects",
+        "GenAI / LLM skills",
+        "Real tool experience"
+      ],
+      "C5": {
+        "project_interview_value": 3,
+        "recruiters_ask_frequency": "Always"
+      },
+      "C6": "Internal project expo",
+      "C7": [
+        "Mentored, industry-style project track",
+        "Demo day with hiring partners",
+        "AI skills bootcamp"
+      ],
+      "C8": {
+        "funding_source": "Shared",
+        "cost_per_student": "Rs. 500 to 2,000"
+      },
+      "C9": {
+        "approver": "TPO with Principal",
+        "approval_timeline": "1 to 3 months"
+      },
+      "C10": {
+        "tpo_pilot_interest": [
+          "Free pilot project cohort",
+          "Demo day"
+        ],
+        "contact_name": "Siddharth Verma",
+        "contact_email": "tpo.siddharth@bmsce.ac.in",
+        "contact_phone": "+91 97411 22334",
+        "consent": true
+      }
+    },
+    "survey_path": [
+      {
+        "questionId": "C1",
+        "stepNumber": 1,
+        "questionTitle": "Which college is this, and how big is your CS/AI final-year batch?",
+        "answerSummary": "BMS College of Engineering | Batch: 120 to 250",
+        "rawAnswer": {
+          "batch_size": "120 to 250"
+        }
+      },
+      {
+        "questionId": "C2",
+        "stepNumber": 2,
+        "questionTitle": "Last year, roughly what share of that batch was placed in tech roles?",
+        "answerSummary": "60 to 80%",
+        "rawAnswer": "60 to 80%"
+      },
+      {
+        "questionId": "C3",
+        "stepNumber": 3,
+        "questionTitle": "Which kinds of recruiters hired those students?",
+        "answerSummary": "IT services, Product companies, Startups, AI-focused firms",
+        "rawAnswer": [
+          "IT services",
+          "Product companies",
+          "Startups",
+          "AI-focused firms"
+        ]
+      },
+      {
+        "questionId": "C4",
+        "stepNumber": 4,
+        "questionTitle": "What did those recruiters most often say was missing in your students?",
+        "answerSummary": "Depth in practical projects, GenAI / LLM skills, Real tool experience",
+        "rawAnswer": [
+          "Depth in practical projects",
+          "GenAI / LLM skills",
+          "Real tool experience"
+        ]
+      },
+      {
+        "questionId": "C5",
+        "stepNumber": 5,
+        "questionTitle": "How much do students' final-year projects help them in technical interviews?",
+        "answerSummary": "Score: 3/5 | Ask frequency: Always",
+        "rawAnswer": {
+          "project_interview_value": 3,
+          "recruiters_ask_frequency": "Always"
+        }
+      },
+      {
+        "questionId": "C6",
+        "stepNumber": 6,
+        "questionTitle": "How do you currently showcase student projects to recruiters?",
+        "answerSummary": "Internal project expo",
+        "rawAnswer": "Internal project expo"
+      },
+      {
+        "questionId": "C7",
+        "stepNumber": 7,
+        "questionTitle": "Which would best close the gap from Q4? Rank your top 3.",
+        "answerSummary": "1. Mentored, industry-style project track, 2. Demo day with hiring partners, 3. AI skills bootcamp",
+        "rawAnswer": [
+          "Mentored, industry-style project track",
+          "Demo day with hiring partners",
+          "AI skills bootcamp"
+        ]
+      },
+      {
+        "questionId": "C8",
+        "stepNumber": 8,
+        "questionTitle": "If your #1 choice existed, who should pay and what is reasonable per student?",
+        "answerSummary": "Payer: Shared | Per student: Rs. 500 to 2,000",
+        "rawAnswer": {
+          "funding_source": "Shared",
+          "cost_per_student": "Rs. 500 to 2,000"
+        }
+      },
+      {
+        "questionId": "C9",
+        "stepNumber": 9,
+        "questionTitle": "Who approves such a program and how long does it take?",
+        "answerSummary": "Approver: TPO with Principal | Timeline: 1 to 3 months",
+        "rawAnswer": {
+          "approver": "TPO with Principal",
+          "approval_timeline": "1 to 3 months"
+        }
+      },
+      {
+        "questionId": "C10",
+        "stepNumber": 10,
+        "questionTitle": "Would you host a free pilot cohort or a recruiter demo day with Kolaba?",
+        "answerSummary": "Free pilot project cohort, Demo day",
+        "rawAnswer": {
+          "tpo_pilot_interest": [
+            "Free pilot project cohort",
+            "Demo day"
+          ]
+        }
+      }
+    ],
+    "pilot_interest": "Free pilot project cohort, Demo day",
+    "consent": true,
+    "time_spent_seconds": 210,
+    "created_at": "2026-09-24T19:05:00Z"
+  },
+  {
+    "id": "resp-sample-admin-01",
+    "respondent_type": "admin",
+    "respondent_type_label": "Principal / Dean / Administrator",
+    "respondent_name": "Dr. Ananya Roy",
+    "college": "MS Ramaiah Institute of Technology, Bengaluru",
+    "department": "Office of the Dean (Academics)",
+    "role": "Dean (Academics & Research)",
+    "email": "dean.academics@msrit.edu",
+    "phone": "+91 99001 55667",
+    "answers": {
+      "A1": {
+        "college_details": "MS Ramaiah Institute of Technology, Bengaluru",
+        "institution_type": "Autonomous",
+        "branches_offered": [
+          "CSE",
+          "AI & DS",
+          "AIML",
+          "IT",
+          "ECE/EEE"
+        ]
+      },
+      "A2": "Over 250",
+      "A3": "A few GPU machines shared across departments",
+      "A4": {
+        "compute_sufficiency_score": 2,
+        "biggest_shortfall": "Capacity"
+      },
+      "A5": [
+        "Capex / budget",
+        "Procurement delays",
+        "Faculty lack GenAI expertise"
+      ],
+      "A6": [
+        "NBA / NAAC accreditation evidence",
+        "NIRF ranking",
+        "Placement outcomes"
+      ],
+      "A7": "AI Centre of Excellence with an MoU and joint case study",
+      "A8": "Private cloud / VPC inside India",
+      "A9": {
+        "approver": "Management/Trust",
+        "procurement_timeline": "3 to 6 months",
+        "budget_set_aside": "Yes",
+        "budget_range": "15 to 50 lakh"
+      },
+      "A10": {
+        "pilot_welcome": "Yes",
+        "contact_name": "Dr. Ananya Roy",
+        "contact_designation": "Dean (Academics & Research)",
+        "contact_email": "dean.academics@msrit.edu",
+        "contact_phone": "+91 99001 55667",
+        "consent": true
+      }
+    },
+    "survey_path": [
+      {
+        "questionId": "A1",
+        "stepNumber": 1,
+        "questionTitle": "Please tell us about your institution.",
+        "answerSummary": "MS Ramaiah Institute of Technology | Autonomous | Branches: CSE, AI&DS, AIML, IT, ECE/EEE",
+        "rawAnswer": {
+          "institution_type": "Autonomous"
+        }
+      },
+      {
+        "questionId": "A2",
+        "stepNumber": 2,
+        "questionTitle": "Roughly how many final-year students do AI/ML projects each year?",
+        "answerSummary": "Over 250",
+        "rawAnswer": "Over 250"
+      },
+      {
+        "questionId": "A3",
+        "stepNumber": 3,
+        "questionTitle": "What compute do those students use today?",
+        "answerSummary": "A few GPU machines shared across departments",
+        "rawAnswer": "A few GPU machines shared across departments"
+      },
+      {
+        "questionId": "A4",
+        "stepNumber": 4,
+        "questionTitle": "Is that enough for those students?",
+        "answerSummary": "Sufficiency: 2/5 | Shortfall: Capacity",
+        "rawAnswer": {
+          "compute_sufficiency_score": 2,
+          "biggest_shortfall": "Capacity"
+        }
+      },
+      {
+        "questionId": "A5",
+        "stepNumber": 5,
+        "questionTitle": "What has held back upgrading? (select up to 3)",
+        "answerSummary": "Capex / budget, Procurement delays, Faculty lack GenAI expertise",
+        "rawAnswer": [
+          "Capex / budget",
+          "Procurement delays",
+          "Faculty lack GenAI expertise"
+        ]
+      },
+      {
+        "questionId": "A6",
+        "stepNumber": 6,
+        "questionTitle": "Which outcome does this gap hurt most for the institution? Rank the top 3.",
+        "answerSummary": "1. NBA / NAAC accreditation evidence, 2. NIRF ranking, 3. Placement outcomes",
+        "rawAnswer": [
+          "NBA / NAAC accreditation evidence",
+          "NIRF ranking",
+          "Placement outcomes"
+        ]
+      },
+      {
+        "questionId": "A7",
+        "stepNumber": 7,
+        "questionTitle": "Which partnership would you consider first to improve that outcome?",
+        "answerSummary": "AI Centre of Excellence with an MoU and joint case study",
+        "rawAnswer": "AI Centre of Excellence with an MoU and joint case study"
+      },
+      {
+        "questionId": "A8",
+        "stepNumber": 8,
+        "questionTitle": "If student work ran on that platform, where must the data stay?",
+        "answerSummary": "Private cloud / VPC inside India",
+        "rawAnswer": "Private cloud / VPC inside India"
+      },
+      {
+        "questionId": "A9",
+        "stepNumber": 9,
+        "questionTitle": "Who approves this kind of partnership, how long does it take, and is budget set aside?",
+        "answerSummary": "Approver: Management/Trust | Timeline: 3 to 6 months | Budget: 15 to 50 lakh",
+        "rawAnswer": {
+          "approver": "Management/Trust",
+          "budget_set_aside": "Yes",
+          "budget_range": "15 to 50 lakh"
+        }
+      },
+      {
+        "questionId": "A10",
+        "stepNumber": 10,
+        "questionTitle": "Would you welcome a free, capped pilot of that partnership, in exchange for feedback and a joint case study?",
+        "answerSummary": "Yes (Dean Academics, MSRIT)",
+        "rawAnswer": {
+          "pilot_welcome": "Yes"
+        }
+      }
+    ],
+    "pilot_interest": "Yes",
+    "consent": true,
+    "time_spent_seconds": 280,
+    "created_at": "2026-09-24T19:30:00Z"
+  }
+]
