@@ -2,9 +2,10 @@ import { Resend } from "resend";
 import { SurveyResponse } from "@/types/survey";
 
 const resendApiKey = process.env.RESEND_API_KEY;
-const notificationEmail =
-  process.env.SURVEY_NOTIFICATION_EMAIL || "info@kolabacloud.com";
-const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+const recipientEmail =
+  process.env.RECIPIENT_EMAIL ||
+  process.env.SURVEY_NOTIFICATION_EMAIL ||
+  "aditidas2486@gmail.com";
 
 export const isResendConfigured = Boolean(
   resendApiKey && resendApiKey.startsWith("re_")
@@ -13,11 +14,10 @@ export const isResendConfigured = Boolean(
 export const resend = isResendConfigured ? new Resend(resendApiKey) : null;
 
 export async function sendSurveyNotificationEmail(response: SurveyResponse) {
-  const adminResponseUrl = `${appUrl}/admin/responses/${response.id}`;
-  const subject = `[Kolaba Survey] New ${response.respondent_type_label} Response — ${response.college || "Engineering College"}`;
+  const subject = `[Kolaba Survey] New ${response.respondent_type_label} Response — ${response.respondent_name} (${response.college || "Engineering College"})`;
 
   // Extract key summary points from the path
-  const keyPoints = response.survey_path
+  const keyPoints = (response.survey_path || [])
     .filter(
       (step) =>
         step.answerSummary &&
@@ -29,7 +29,7 @@ export async function sendSurveyNotificationEmail(response: SurveyResponse) {
     )
     .join("<br/>");
 
-  const plainKeyPoints = response.survey_path
+  const plainKeyPoints = (response.survey_path || [])
     .filter(
       (step) =>
         step.answerSummary &&
@@ -58,8 +58,6 @@ export async function sendSurveyNotificationEmail(response: SurveyResponse) {
           .info-label { width: 130px; color: #64748b; font-weight: 500; }
           .info-value { font-weight: 600; color: #0f172a; }
           .answers-box { font-size: 14px; line-height: 1.6; color: #334155; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 16px; margin-bottom: 20px; }
-          .btn-container { text-align: center; margin: 24px 0 12px; }
-          .btn { display: inline-block; background-color: #0b132b; color: #ffffff !important; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
           .footer { padding: 16px 24px; background: #f8fafc; border-top: 1px solid #e2e8f0; font-size: 12px; color: #64748b; text-align: center; }
         </style>
       </head>
@@ -79,11 +77,6 @@ export async function sendSurveyNotificationEmail(response: SurveyResponse) {
               ${response.role ? `<div class="info-row"><span class="info-label">Role:</span> <span class="info-value">${response.role}</span></div>` : ""}
             </div>
 
-            <div class="section-title">Key Responses (${response.survey_path.length} questions answered)</div>
-            <div class="answers-box">
-              ${keyPoints || "<em>No detailed answers captured</em>"}
-            </div>
-
             <div class="section-title">Contact & Consent</div>
             <div class="info-grid">
               <div class="info-row"><span class="info-label">Name:</span> <span class="info-value">${response.respondent_name || "N/A"}</span></div>
@@ -92,13 +85,14 @@ export async function sendSurveyNotificationEmail(response: SurveyResponse) {
               <div class="info-row"><span class="info-label">Consent Given:</span> <span class="info-value" style="color: #059669;">${response.consent ? "Yes (Agreed to contact & storage)" : "No"}</span></div>
             </div>
 
-            <div class="btn-container">
-              <a href="${adminResponseUrl}" class="btn" target="_blank">View Response in Admin Dashboard →</a>
+            <div class="section-title">Recorded Responses (${response.survey_path?.length || 0} questions answered)</div>
+            <div class="answers-box">
+              ${keyPoints || "<em>No detailed answers captured</em>"}
             </div>
           </div>
           <div class="footer">
             Kolaba Cloud AI • Enterprise AI Infrastructure • Bengaluru, India<br/>
-            Received at ${new Date(response.created_at).toLocaleString("en-IN")}
+            Received at ${new Date(response.created_at || Date.now()).toLocaleString("en-IN")}
           </div>
         </div>
       </body>
@@ -116,9 +110,6 @@ College:
 ${response.college || "N/A"}
 
 ${response.department ? `Department:\n${response.department}\n` : ""}${response.role ? `Role:\n${response.role}\n` : ""}
-Key responses:
-${plainKeyPoints}
-
 Contact:
 Name: ${response.respondent_name || "N/A"}
 Email: ${response.email || "N/A"}
@@ -127,12 +118,13 @@ Phone: ${response.phone || "N/A"}
 Consent:
 ${response.consent ? "Yes" : "No"}
 
-View full response: ${adminResponseUrl}
+Key responses:
+${plainKeyPoints}
 `;
 
   if (!isResendConfigured || !resend) {
     console.log(
-      `[Resend Notice] RESEND_API_KEY is not configured. Email to ${notificationEmail} logged below:`
+      `[Resend Notice] RESEND_API_KEY is not configured. Email to ${recipientEmail} logged below:`
     );
     console.log("Subject:", subject);
     console.log("Text Body:\n", textContent);
@@ -142,10 +134,11 @@ View full response: ${adminResponseUrl}
   try {
     const data = await resend.emails.send({
       from: "Kolaba Survey <onboarding@resend.dev>",
-      to: [notificationEmail],
+      to: [recipientEmail],
       subject: subject,
       html: htmlContent,
       text: textContent,
+      replyTo: response.email || undefined,
     });
     return { success: true, data };
   } catch (error) {

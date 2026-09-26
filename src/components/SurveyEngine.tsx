@@ -226,7 +226,7 @@ export default function SurveyEngine() {
     };
 
     try {
-      const res = await fetch("/api/survey/submit", {
+      const res = await fetch("/api/survey", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -234,7 +234,7 @@ export default function SurveyEngine() {
 
       const data = await res.json();
 
-      if (data.success) {
+      if (res.ok && data.success) {
         setCompletedResponse({
           id: data.id,
           type: respondentType,
@@ -243,18 +243,11 @@ export default function SurveyEngine() {
           pilotInterest: pilotInterest,
         });
       } else {
-        alert("There was an issue saving your response: " + (data.error || "Please try again."));
+        alert(data.error || "Something went wrong submitting your survey. Please try again.");
       }
     } catch (err: any) {
       console.error("Submission error:", err);
-      // Fallback completion view
-      setCompletedResponse({
-        id: `resp-local-${Date.now()}`,
-        type: respondentType,
-        name: respondentName,
-        college: college,
-        pilotInterest: pilotInterest,
-      });
+      alert("Network error: Unable to submit survey. Please check your connection and try again.");
     } finally {
       setIsSubmitting(false);
     }

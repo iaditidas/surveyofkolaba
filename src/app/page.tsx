@@ -117,17 +117,10 @@ export default function HomePage() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
           <Link
             href="/survey"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-[#0B132B] text-white text-base font-bold hover:bg-slate-800 transition-all shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-9 py-4 rounded-xl bg-[#0B132B] text-white text-base font-bold hover:bg-slate-800 transition-all shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
           >
-            <span>Start Survey</span>
+            <span>Start Survey Now</span>
             <ArrowRight className="w-5 h-5 text-teal-400" />
-          </Link>
-
-          <Link
-            href="/admin/dashboard"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl border border-slate-300 bg-white text-slate-800 text-sm font-semibold hover:bg-slate-50 transition-colors shadow-xs"
-          >
-            <span>View Admin Analytics</span>
           </Link>
         </div>
 

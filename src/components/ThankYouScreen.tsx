@@ -1,19 +1,18 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import confetti from "canvas-confetti";
 import {
   CheckCircle2,
   Sparkles,
-  ArrowRight,
   RotateCcw,
-  LayoutDashboard,
-  Share2,
-  Mail,
+  Home,
+  MailCheck,
   ShieldCheck,
-  Download,
+  Share2,
+  Check,
 } from "lucide-react";
 import { RespondentType } from "@/types/survey";
 import { PERSONA_INFO } from "@/lib/survey-data";
@@ -35,8 +34,10 @@ export default function ThankYouScreen({
   pilotInterest,
   onReset,
 }: ThankYouScreenProps) {
+  const [copied, setCopied] = useState(false);
+
   useEffect(() => {
-    // Fire confetti on load
+    // Fire celebratory confetti on load
     try {
       confetti({
         particleCount: 80,
@@ -50,6 +51,15 @@ export default function ThankYouScreen({
   }, []);
 
   const personaMeta = PERSONA_INFO[respondentType];
+
+  const handleShare = async () => {
+    const url = typeof window !== "undefined" ? window.location.origin : "https://kolabacloud.com";
+    if (navigator.clipboard) {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
+  };
 
   // Tailor next steps message based on role and pilot interest
   let tailoredMessage =
@@ -84,9 +94,9 @@ export default function ThankYouScreen({
 
         {/* Primary Thank You Copy */}
         <div className="space-y-2.5">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
-            <Sparkles className="w-3.5 h-3.5 text-teal-600" />
-            <span>Response Recorded</span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold">
+            <MailCheck className="w-3.5 h-3.5 text-teal-600" />
+            <span>Response Recorded &amp; Dispatched</span>
           </span>
 
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -94,9 +104,9 @@ export default function ThankYouScreen({
           </h1>
 
           <p className="text-sm sm:text-base text-slate-600 max-w-lg mx-auto leading-relaxed">
-            Your response has been recorded and will help inform{" "}
+            Your responses have been successfully captured and routed to the research team to help inform{" "}
             <strong className="text-slate-900">Kolaba Cloud AI&apos;s</strong>{" "}
-            engineering-college program research.
+            engineering-college initiatives.
           </p>
         </div>
 
@@ -109,13 +119,21 @@ export default function ThankYouScreen({
           <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
             {tailoredMessage}
           </p>
-          <div className="text-[11px] text-slate-600 pt-1 font-mono">
+          <div className="text-[11px] text-slate-500 pt-1 font-mono">
             Submission ID: {submissionId}
           </div>
         </div>
 
         {/* Action Buttons */}
         <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <Link
+            href="/"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-[#0B132B] text-white text-sm font-semibold hover:bg-slate-800 transition-colors shadow-sm"
+          >
+            <Home className="w-4 h-4 text-teal-400" />
+            <span>Return to Home</span>
+          </Link>
+
           <button
             type="button"
             onClick={onReset}
@@ -125,18 +143,28 @@ export default function ThankYouScreen({
             <span>Take for Another Role</span>
           </button>
 
-          <Link
-            href={`/admin/responses/${submissionId}`}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#0B132B] text-white text-sm font-semibold hover:bg-slate-800 transition-colors shadow-sm"
+          <button
+            type="button"
+            onClick={handleShare}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 hover:bg-slate-100 transition-colors"
           >
-            <LayoutDashboard className="w-4 h-4 text-teal-400" />
-            <span>View in Admin Dashboard</span>
-          </Link>
+            {copied ? (
+              <>
+                <Check className="w-4 h-4 text-emerald-600" />
+                <span className="text-emerald-700 font-semibold">Link Copied!</span>
+              </>
+            ) : (
+              <>
+                <Share2 className="w-4 h-4 text-slate-500" />
+                <span>Share Survey</span>
+              </>
+            )}
+          </button>
         </div>
 
-        <div className="pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-xs text-slate-600">
+        <div className="pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-xs text-slate-500">
           <ShieldCheck className="w-4 h-4 text-teal-600" />
-          <span>Responses are encrypted & strictly used for academic research.</span>
+          <span>Responses are encrypted &amp; strictly used for academic research and compute sizing.</span>
         </div>
       </motion.div>
     </div>

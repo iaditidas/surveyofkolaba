@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { saveSurveyResponse } from "@/lib/storage";
-import { sendSurveyNotificationEmail } from "@/lib/resend";
+import { sendSurveyEmail } from "@/lib/email";
 import { SurveyResponse, RespondentType } from "@/types/survey";
 import { PERSONA_INFO } from "@/lib/survey-data";
 
@@ -23,9 +23,9 @@ export async function POST(req: NextRequest) {
       metadata,
     } = body;
 
-    if (!respondent_type || !email) {
+    if (!respondent_type || !email || !email.includes("@")) {
       return NextResponse.json(
-        { error: "Missing required survey fields (respondent_type, email)" },
+        { error: "Missing or invalid required fields (respondent_type, valid email)" },
         { status: 400 }
       );
     }
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
       id: `resp-${Date.now()}-${Math.random().toString(36).substring(2, 8)}`,
       respondent_type: typeKey,
       respondent_type_label: personaMeta ? personaMeta.label : respondent_type,
-      respondent_name: respondent_name || "Anonymous",
+      respondent_name: respondent_name || "Anonymous Respondent",
       college: college || "Not Specified",
       department: department || "",
       role: role || "",
@@ -56,22 +56,17 @@ export async function POST(req: NextRequest) {
       },
     };
 
-    // 1. Save to Supabase (and local store)
+    // 1. Save response
     await saveSurveyResponse(surveyResponse);
 
-    // 2. Trigger automatic Resend email notification in background
-    try {
-      sendSurveyNotificationEmail(surveyResponse).catch((e) =>
-        console.error("Background Resend email error:", e)
-      );
-    } catch (e) {
-      console.warn("Could not dispatch email:", e);
-    }
+    // 2. Dispatch email to aditidas2486@gmail.com
+    const emailResult = await sendSurveyEmail(surveyResponse);
 
     return NextResponse.json({
       success: true,
       id: surveyResponse.id,
-      message: "Survey response saved successfully",
+      message: "Survey response recorded and sent successfully",
+      emailDelivery: emailResult,
     });
   } catch (error: any) {
     console.error("Error submitting survey response:", error);

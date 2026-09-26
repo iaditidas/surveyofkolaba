@@ -1,5 +1,214 @@
 [
   {
+    "id": "resp-1790418041581-4ltrgf",
+    "respondent_type": "student",
+    "respondent_type_label": "Student / Club Lead",
+    "respondent_name": "Aditi Das",
+    "college": "RV College of Engineering",
+    "department": "AI & DS",
+    "role": "Student / Club Lead",
+    "email": "aditidas2486@gmail.com",
+    "phone": "+91 9876543210",
+    "answers": {
+      "D1": "AI & DS / AIML",
+      "D2": "AI / ML (vision, NLP, LLM chatbot, agents)",
+      "D3": "Still ongoing",
+      "D10": {
+        "contact_name": "Aditi Das",
+        "contact_email": "aditidas2486@gmail.com",
+        "contact_phone": "+91 9876543210",
+        "contact_college": "RV College of Engineering",
+        "reach_channels": [
+          "WhatsApp",
+          "Instagram"
+        ],
+        "club_size": "Under 30",
+        "campus_ambassador": "Yes",
+        "chapter": "IEEE",
+        "consent": true
+      }
+    },
+    "survey_path": [
+      {
+        "questionId": "D1",
+        "stepNumber": 1,
+        "questionTitle": "Which department are you studying in?",
+        "answerSummary": "AI & DS / AIML",
+        "rawAnswer": "AI & DS / AIML"
+      },
+      {
+        "questionId": "D2",
+        "stepNumber": 2,
+        "questionTitle": "What kind of project have you done, or are you doing, in your department?",
+        "answerSummary": "AI / ML (vision, NLP, LLM chatbot, agents)",
+        "rawAnswer": "AI / ML (vision, NLP, LLM chatbot, agents)"
+      },
+      {
+        "questionId": "D3",
+        "stepNumber": 3,
+        "questionTitle": "Is that project completed?",
+        "answerSummary": "Still ongoing",
+        "rawAnswer": "Still ongoing"
+      },
+      {
+        "questionId": "D10",
+        "stepNumber": 10,
+        "questionTitle": "Can your club share this survey or host a 30-minute session, in exchange for a free workshop?",
+        "answerSummary": "WhatsApp, Instagram | Under 30 | Yes | IEEE",
+        "rawAnswer": {
+          "contact_name": "Aditi Das",
+          "contact_email": "aditidas2486@gmail.com",
+          "contact_phone": "+91 9876543210",
+          "contact_college": "RV College of Engineering",
+          "reach_channels": [
+            "WhatsApp",
+            "Instagram"
+          ],
+          "club_size": "Under 30",
+          "campus_ambassador": "Yes",
+          "chapter": "IEEE",
+          "consent": true
+        }
+      }
+    ],
+    "pilot_interest": "Yes - Campus Ambassador",
+    "consent": true,
+    "time_spent_seconds": 185,
+    "created_at": "2026-09-26T10:20:41.581Z",
+    "metadata": {
+      "userAgent": "curl/8.7.1",
+      "ip": "::1"
+    }
+  },
+  {
+    "id": "resp-1790355992531-3uowp6",
+    "respondent_type": "faculty",
+    "respondent_type_label": "HOD / Faculty",
+    "respondent_name": "Prof. S. Narayanan",
+    "college": "BMS College of Engineering",
+    "department": "Computer Science & Engineering",
+    "role": "HOD & Professor",
+    "email": "hod.cse@bmsce.ac.in",
+    "phone": "+91 98450 99887",
+    "answers": {
+      "B1": {
+        "college_name": "BMS College of Engineering",
+        "city_state": "Bengaluru, Karnataka",
+        "department": "Computer Science & Engineering",
+        "role": "HOD"
+      },
+      "B2": [
+        "Machine learning",
+        "Deep learning / computer vision",
+        "NLP / LLM chatbots"
+      ],
+      "B3": "25 to 50%",
+      "B4": "Over 6 months, often spills into the next semester",
+      "B5": [
+        "GPU / compute access",
+        "Mentorship",
+        "Datasets"
+      ],
+      "B6": [
+        "Personal laptops",
+        "Free cloud tiers (Colab, Kaggle)"
+      ],
+      "B7": {
+        "faculty_comfort": 2,
+        "fdp_preference": "One-week FDP"
+      },
+      "B8": {
+        "primary_support": "Lab sandbox with curriculum modules",
+        "preferred_model": "Subscribe"
+      },
+      "B9": {
+        "decider": "HOD",
+        "proof_needed": [
+          "Pilot results",
+          "Mapping to university syllabus"
+        ]
+      },
+      "B10": {
+        "pilot_interest": [
+          "Pilot with a project batch"
+        ],
+        "contact_name": "Prof. S. Narayanan",
+        "contact_email": "hod.cse@bmsce.ac.in",
+        "consent": true
+      }
+    },
+    "survey_path": [
+      {
+        "questionId": "B1",
+        "stepNumber": 1,
+        "questionTitle": "Which college, department and role do you have?",
+        "answerSummary": "BMS College of Engineering | CSE | HOD"
+      },
+      {
+        "questionId": "B2",
+        "stepNumber": 2,
+        "questionTitle": "Which project areas do your final-year students choose most?",
+        "answerSummary": "Machine learning, Deep learning / computer vision, NLP / LLM chatbots"
+      },
+      {
+        "questionId": "B3",
+        "stepNumber": 3,
+        "questionTitle": "Of those projects, roughly what share finish on time?",
+        "answerSummary": "25 to 50%"
+      },
+      {
+        "questionId": "B4",
+        "stepNumber": 4,
+        "questionTitle": "From topic approval to completion, how long does a typical project take?",
+        "answerSummary": "Over 6 months, often spills into the next semester"
+      },
+      {
+        "questionId": "B5",
+        "stepNumber": 5,
+        "questionTitle": "What is the main reason projects run late or fail?",
+        "answerSummary": "1. GPU / compute access, 2. Mentorship, 3. Datasets"
+      },
+      {
+        "questionId": "B6",
+        "stepNumber": 6,
+        "questionTitle": "How do students currently work around that problem?",
+        "answerSummary": "Personal laptops, Free cloud tiers (Colab, Kaggle)"
+      },
+      {
+        "questionId": "B7",
+        "stepNumber": 7,
+        "questionTitle": "Can you and your colleagues guide students on hands-on GenAI?",
+        "answerSummary": "Comfort: 2/5 | Prefers: One-week FDP"
+      },
+      {
+        "questionId": "B8",
+        "stepNumber": 8,
+        "questionTitle": "Which single support would best fix the main problem from Q5?",
+        "answerSummary": "Lab sandbox with curriculum modules | Model: Subscribe"
+      },
+      {
+        "questionId": "B9",
+        "stepNumber": 9,
+        "questionTitle": "Who decides on adopting that support, and what proof would you need?",
+        "answerSummary": "Decider: HOD | Proof: Pilot results, Mapping to university syllabus"
+      },
+      {
+        "questionId": "B10",
+        "stepNumber": 10,
+        "questionTitle": "Would you run a pilot with a final-year batch or host a workshop?",
+        "answerSummary": "Pilot with a project batch"
+      }
+    ],
+    "pilot_interest": "Pilot with a project batch",
+    "consent": true,
+    "time_spent_seconds": 0,
+    "created_at": "2026-09-25T17:06:32.531Z",
+    "metadata": {
+      "userAgent": "curl/8.7.1",
+      "ip": "::1"
+    }
+  },
+  {
     "id": "resp-1790354683841-1kh7vi",
     "respondent_type": "student",
     "respondent_type_label": "Student / Club Lead",
