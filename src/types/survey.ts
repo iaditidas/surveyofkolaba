@@ -20,7 +20,7 @@ export interface SubQuestion {
   id: string;
   title: string;
   subtitle?: string;
-  type: 'single-choice' | 'multi-choice' | 'text' | 'scale';
+  type: 'single-choice' | 'multi-choice' | 'text' | 'textarea' | 'scale';
   options?: QuestionOption[];
   placeholder?: string;
   maxSelections?: number;
@@ -50,6 +50,9 @@ export interface QuestionDefinition {
   linkReason?: string;
   feedsDecision?: string;
   getNextQuestionId?: (currentAnswer: any, allAnswers: Record<string, any>) => string | null;
+  hasObservationText?: boolean;
+  observationLabel?: string;
+  observationPlaceholder?: string;
 }
 
 export interface SurveyPathStep {

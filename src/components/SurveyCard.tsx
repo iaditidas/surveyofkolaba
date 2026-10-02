@@ -67,13 +67,27 @@ export default function SurveyCard({
   // Handle single choice selection
   const handleSingleChoice = (optionId: string) => {
     setError(null);
-    onAnswerChange(optionId);
+    if (question.hasObservationText) {
+      const obs =
+        typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+          ? currentValue.observation || ""
+          : "";
+      onAnswerChange({ selected: optionId, observation: obs });
+    } else {
+      onAnswerChange(optionId);
+    }
   };
 
   // Handle multi choice selection
   const handleMultiChoice = (optionId: string, max?: number) => {
     setError(null);
-    const existing: string[] = Array.isArray(currentValue) ? [...currentValue] : [];
+    const currentList =
+      typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+        ? currentValue.selected || []
+        : Array.isArray(currentValue)
+        ? currentValue
+        : [];
+    const existing: string[] = [...currentList];
     const idx = existing.indexOf(optionId);
 
     if (idx >= 0) {
@@ -85,7 +99,16 @@ export default function SurveyCard({
       }
       existing.push(optionId);
     }
-    onAnswerChange(existing);
+
+    if (question.hasObservationText) {
+      const obs =
+        typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+          ? currentValue.observation || ""
+          : "";
+      onAnswerChange({ selected: existing, observation: obs });
+    } else {
+      onAnswerChange(existing);
+    }
   };
 
   // Handle ranking top 3
@@ -119,12 +142,20 @@ export default function SurveyCard({
   // Validation before proceed
   const validateAndProceed = () => {
     if (question.type === "single-choice") {
-      if (!currentValue) {
+      const sel =
+        typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+          ? currentValue.selected
+          : currentValue;
+      if (!sel) {
         setError("Please select an option to continue");
         return;
       }
     } else if (question.type === "multi-choice") {
-      if (!currentValue || (Array.isArray(currentValue) && currentValue.length === 0)) {
+      const sel =
+        typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+          ? currentValue.selected
+          : currentValue;
+      if (!sel || (Array.isArray(sel) && sel.length === 0)) {
         setError("Please select at least one option");
         return;
       }
@@ -145,7 +176,12 @@ export default function SurveyCard({
           if (sub.condition && !sub.condition(currentValue)) {
             continue;
           }
-          if (sub.required && (!currentValue[sub.id] || currentValue[sub.id] === "")) {
+          if (
+            sub.required &&
+            (!currentValue[sub.id] ||
+              currentValue[sub.id] === "" ||
+              (Array.isArray(currentValue[sub.id]) && currentValue[sub.id].length === 0))
+          ) {
             setError(`Please complete: ${sub.title}`);
             return;
           }
@@ -253,114 +289,57 @@ export default function SurveyCard({
         <div className="pt-2">
           {/* SINGLE CHOICE */}
           {question.type === "single-choice" && question.options && (
-            <div className="space-y-2.5">
-              {question.options.map((opt, idx) => {
-                const isSelected = currentValue === opt.id;
-                return (
-                  <button
-                    key={opt.id}
-                    type="button"
-                    onClick={() => handleSingleChoice(opt.id)}
-                    className={`w-full text-left p-4 rounded-xl border transition-all duration-150 flex items-center justify-between group ${
-                      isSelected
-                        ? "border-[#0B132B] bg-slate-900 text-white shadow-sm ring-1 ring-[#0B132B]"
-                        : "border-slate-200 bg-white text-slate-800 hover:border-slate-300 hover:bg-slate-50/80 shadow-xs"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3.5 pr-2">
-                      <span
-                        className={`w-6 h-6 rounded-lg text-xs font-semibold flex items-center justify-center transition-colors shrink-0 ${
-                          isSelected
-                            ? "bg-teal-500 text-slate-950 font-bold"
-                            : "bg-slate-100 text-slate-500 group-hover:bg-slate-200"
-                        }`}
-                      >
-                        {idx + 1}
-                      </span>
-                      <div>
-                        <div
-                          className={`text-sm sm:text-base font-medium ${
-                            isSelected ? "text-white" : "text-slate-900"
-                          }`}
-                        >
-                          {opt.label}
-                        </div>
-                        {opt.sublabel && (
-                          <div
-                            className={`text-xs mt-0.5 ${
-                              isSelected ? "text-slate-300" : "text-slate-500"
-                            }`}
-                          >
-                            {opt.sublabel}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <div
-                      className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${
-                        isSelected
-                          ? "bg-teal-400 text-slate-950"
-                          : "border border-slate-300 group-hover:border-slate-400"
-                      }`}
-                    >
-                      {isSelected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          )}
-
-          {/* MULTI CHOICE */}
-          {question.type === "multi-choice" && question.options && (
-            <div className="space-y-3">
-              {question.maxSelections && (
-                <div className="flex items-center justify-between text-xs text-slate-500 font-medium px-1">
-                  <span>
-                    Pick up to {question.maxSelections} options
-                  </span>
-                  <span className="font-semibold text-teal-700">
-                    {Array.isArray(currentValue) ? currentValue.length : 0} of {question.maxSelections} selected
-                  </span>
-                </div>
-              )}
+            <div className="space-y-4">
               <div className="space-y-2.5">
-                {question.options.map((opt) => {
-                  const isSelected =
-                    Array.isArray(currentValue) && currentValue.includes(opt.id);
+                {question.options.map((opt, idx) => {
+                  const selectedId =
+                    typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+                      ? currentValue.selected
+                      : currentValue;
+                  const isSelected = selectedId === opt.id;
                   return (
                     <button
                       key={opt.id}
                       type="button"
-                      onClick={() => handleMultiChoice(opt.id, question.maxSelections)}
+                      onClick={() => handleSingleChoice(opt.id)}
                       className={`w-full text-left p-4 rounded-xl border transition-all duration-150 flex items-center justify-between group ${
                         isSelected
                           ? "border-[#0B132B] bg-slate-900 text-white shadow-sm ring-1 ring-[#0B132B]"
                           : "border-slate-200 bg-white text-slate-800 hover:border-slate-300 hover:bg-slate-50/80 shadow-xs"
                       }`}
                     >
-                      <div className="pr-2">
-                        <div
-                          className={`text-sm sm:text-base font-medium ${
-                            isSelected ? "text-white" : "text-slate-900"
+                      <div className="flex items-center gap-3.5 pr-2">
+                        <span
+                          className={`w-6 h-6 rounded-lg text-xs font-semibold flex items-center justify-center transition-colors shrink-0 ${
+                            isSelected
+                              ? "bg-teal-500 text-slate-950 font-bold"
+                              : "bg-slate-100 text-slate-500 group-hover:bg-slate-200"
                           }`}
                         >
-                          {opt.label}
-                        </div>
-                        {opt.sublabel && (
+                          {idx + 1}
+                        </span>
+                        <div>
                           <div
-                            className={`text-xs mt-0.5 ${
-                              isSelected ? "text-slate-300" : "text-slate-500"
+                            className={`text-sm sm:text-base font-medium ${
+                              isSelected ? "text-white" : "text-slate-900"
                             }`}
                           >
-                            {opt.sublabel}
+                            {opt.label}
                           </div>
-                        )}
+                          {opt.sublabel && (
+                            <div
+                              className={`text-xs mt-0.5 ${
+                                isSelected ? "text-slate-300" : "text-slate-500"
+                              }`}
+                            >
+                              {opt.sublabel}
+                            </div>
+                          )}
+                        </div>
                       </div>
 
                       <div
-                        className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 ${
+                        className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${
                           isSelected
                             ? "bg-teal-400 text-slate-950"
                             : "border border-slate-300 group-hover:border-slate-400"
@@ -372,6 +351,147 @@ export default function SurveyCard({
                   );
                 })}
               </div>
+
+              {question.hasObservationText && (
+                <div className="pt-2 space-y-1.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                  <label className="text-xs font-semibold text-slate-700">
+                    {question.observationLabel || "Observation / Requirement (Optional):"}
+                  </label>
+                  <textarea
+                    rows={3}
+                    value={
+                      typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+                        ? currentValue.observation || ""
+                        : ""
+                    }
+                    onChange={(e) => {
+                      const sel =
+                        typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+                          ? currentValue.selected
+                          : currentValue;
+                      onAnswerChange({
+                        selected: sel,
+                        observation: e.target.value,
+                      });
+                    }}
+                    placeholder={question.observationPlaceholder || "Write your observation or requirement..."}
+                    className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0B132B] transition-all resize-y min-h-[76px]"
+                  />
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* MULTI CHOICE */}
+          {question.type === "multi-choice" && question.options && (
+            <div className="space-y-4">
+              <div className="space-y-3">
+                {question.maxSelections && (
+                  <div className="flex items-center justify-between text-xs text-slate-500 font-medium px-1">
+                    <span>
+                      Pick up to {question.maxSelections} options
+                    </span>
+                    <span className="font-semibold text-teal-700">
+                      {
+                        Array.isArray(
+                          typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+                            ? currentValue.selected
+                            : currentValue
+                        )
+                          ? (
+                              typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+                                ? currentValue.selected
+                                : currentValue
+                            ).length
+                          : 0
+                      }{" "}
+                      of {question.maxSelections} selected
+                    </span>
+                  </div>
+                )}
+                <div className="space-y-2.5">
+                  {question.options.map((opt) => {
+                    const currentSelectedList =
+                      typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+                        ? currentValue.selected || []
+                        : Array.isArray(currentValue)
+                        ? currentValue
+                        : [];
+                    const isSelected = currentSelectedList.includes(opt.id);
+                    return (
+                      <button
+                        key={opt.id}
+                        type="button"
+                        onClick={() => handleMultiChoice(opt.id, question.maxSelections)}
+                        className={`w-full text-left p-4 rounded-xl border transition-all duration-150 flex items-center justify-between group ${
+                          isSelected
+                            ? "border-[#0B132B] bg-slate-900 text-white shadow-sm ring-1 ring-[#0B132B]"
+                            : "border-slate-200 bg-white text-slate-800 hover:border-slate-300 hover:bg-slate-50/80 shadow-xs"
+                        }`}
+                      >
+                        <div className="pr-2">
+                          <div
+                            className={`text-sm sm:text-base font-medium ${
+                              isSelected ? "text-white" : "text-slate-900"
+                            }`}
+                          >
+                            {opt.label}
+                          </div>
+                          {opt.sublabel && (
+                            <div
+                              className={`text-xs mt-0.5 ${
+                                isSelected ? "text-slate-300" : "text-slate-500"
+                              }`}
+                            >
+                              {opt.sublabel}
+                            </div>
+                          )}
+                        </div>
+
+                        <div
+                          className={`w-5 h-5 rounded-md flex items-center justify-center shrink-0 ${
+                            isSelected
+                              ? "bg-teal-400 text-slate-950"
+                              : "border border-slate-300 group-hover:border-slate-400"
+                          }`}
+                        >
+                          {isSelected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {question.hasObservationText && (
+                <div className="pt-2 space-y-1.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                  <label className="text-xs font-semibold text-slate-700">
+                    {question.observationLabel || "Observation / Requirement (Optional):"}
+                  </label>
+                  <textarea
+                    rows={3}
+                    value={
+                      typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+                        ? currentValue.observation || ""
+                        : ""
+                    }
+                    onChange={(e) => {
+                      const sel =
+                        typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+                          ? currentValue.selected || []
+                          : Array.isArray(currentValue)
+                          ? currentValue
+                          : [];
+                      onAnswerChange({
+                        selected: sel,
+                        observation: e.target.value,
+                      });
+                    }}
+                    placeholder={question.observationPlaceholder || "Write your observation or requirement..."}
+                    className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0B132B] transition-all resize-y min-h-[76px]"
+                  />
+                </div>
+              )}
             </div>
           )}
 
@@ -481,6 +601,17 @@ export default function SurveyCard({
                         onChange={(e) => handleSubQuestionChange(sub.id, e.target.value)}
                         placeholder={sub.placeholder || "Enter details..."}
                         className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-200 bg-slate-50/50 text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0B132B] focus:bg-white transition-all"
+                      />
+                    )}
+
+                    {/* Textarea input */}
+                    {sub.type === "textarea" && (
+                      <textarea
+                        rows={3}
+                        value={subVal || ""}
+                        onChange={(e) => handleSubQuestionChange(sub.id, e.target.value)}
+                        placeholder={sub.placeholder || "Enter observations or requirements..."}
+                        className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-200 bg-slate-50/50 text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-[#0B132B] focus:bg-white transition-all resize-y min-h-[76px]"
                       />
                     )}
 
