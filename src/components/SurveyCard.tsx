@@ -67,12 +67,21 @@ export default function SurveyCard({
   // Handle single choice selection
   const handleSingleChoice = (optionId: string) => {
     setError(null);
-    if (question.hasObservationText) {
-      const obs =
-        typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
-          ? currentValue.observation || ""
-          : "";
-      onAnswerChange({ selected: optionId, observation: obs });
+    const obs =
+      typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+        ? currentValue.observation || ""
+        : "";
+    const noneProb =
+      typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+        ? currentValue.none_problems || ""
+        : "";
+
+    if (
+      question.hasObservationText ||
+      optionId.toLowerCase().includes("none of the above") ||
+      noneProb
+    ) {
+      onAnswerChange({ selected: optionId, observation: obs, none_problems: noneProb });
     } else {
       onAnswerChange(optionId);
     }
@@ -100,12 +109,20 @@ export default function SurveyCard({
       existing.push(optionId);
     }
 
-    if (question.hasObservationText) {
-      const obs =
-        typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
-          ? currentValue.observation || ""
-          : "";
-      onAnswerChange({ selected: existing, observation: obs });
+    const obs =
+      typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+        ? currentValue.observation || ""
+        : "";
+    const noneProb =
+      typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+        ? currentValue.none_problems || ""
+        : "";
+    const hasNone = existing.some(
+      (id) => typeof id === "string" && id.toLowerCase().includes("none of the above")
+    );
+
+    if (question.hasObservationText || hasNone || noneProb) {
+      onAnswerChange({ selected: existing, observation: obs, none_problems: noneProb });
     } else {
       onAnswerChange(existing);
     }
@@ -369,9 +386,14 @@ export default function SurveyCard({
                         typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
                           ? currentValue.selected
                           : currentValue;
+                      const noneProb =
+                        typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+                          ? currentValue.none_problems || ""
+                          : "";
                       onAnswerChange({
                         selected: sel,
                         observation: e.target.value,
+                        none_problems: noneProb,
                       });
                     }}
                     placeholder={question.observationPlaceholder || "Write your observation or requirement..."}
@@ -379,6 +401,46 @@ export default function SurveyCard({
                   />
                 </div>
               )}
+
+              {/* Dynamic text box when "None of the above" is selected in single-choice */}
+              {(() => {
+                const selectedOpt =
+                  typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+                    ? currentValue.selected
+                    : currentValue;
+                const isNone =
+                  typeof selectedOpt === "string" &&
+                  selectedOpt.toLowerCase().includes("none of the above");
+                if (!isNone) return null;
+                return (
+                  <div className="pt-2 space-y-1.5 bg-amber-50/80 p-4 rounded-xl border border-amber-200 animate-in fade-in slide-in-from-top-1 duration-200">
+                    <label className="text-xs font-semibold text-amber-950">
+                      Please describe what problems or challenges you are facing:
+                    </label>
+                    <textarea
+                      rows={3}
+                      value={
+                        typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+                          ? currentValue.none_problems || ""
+                          : ""
+                      }
+                      onChange={(e) => {
+                        const obs =
+                          typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+                            ? currentValue.observation || ""
+                            : "";
+                        onAnswerChange({
+                          selected: selectedOpt,
+                          observation: obs,
+                          none_problems: e.target.value,
+                        });
+                      }}
+                      placeholder="Please describe your specific challenges, bottlenecks or requirements..."
+                      className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-amber-300 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-amber-600 transition-all resize-y min-h-[76px]"
+                    />
+                  </div>
+                );
+              })()}
             </div>
           )}
 
@@ -482,9 +544,14 @@ export default function SurveyCard({
                           : Array.isArray(currentValue)
                           ? currentValue
                           : [];
+                      const noneProb =
+                        typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+                          ? currentValue.none_problems || ""
+                          : "";
                       onAnswerChange({
                         selected: sel,
                         observation: e.target.value,
+                        none_problems: noneProb,
                       });
                     }}
                     placeholder={question.observationPlaceholder || "Write your observation or requirement..."}
@@ -492,6 +559,50 @@ export default function SurveyCard({
                   />
                 </div>
               )}
+
+              {/* Dynamic text box when "None of the above" is selected in multi-choice */}
+              {(() => {
+                const selectedList =
+                  typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+                    ? currentValue.selected || []
+                    : Array.isArray(currentValue)
+                    ? currentValue
+                    : [];
+                const isNone =
+                  Array.isArray(selectedList) &&
+                  selectedList.some(
+                    (s) => typeof s === "string" && s.toLowerCase().includes("none of the above")
+                  );
+                if (!isNone) return null;
+                return (
+                  <div className="pt-2 space-y-1.5 bg-amber-50/80 p-4 rounded-xl border border-amber-200 animate-in fade-in slide-in-from-top-1 duration-200">
+                    <label className="text-xs font-semibold text-amber-950">
+                      Please describe what problems or challenges you are facing:
+                    </label>
+                    <textarea
+                      rows={3}
+                      value={
+                        typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+                          ? currentValue.none_problems || ""
+                          : ""
+                      }
+                      onChange={(e) => {
+                        const obs =
+                          typeof currentValue === "object" && currentValue !== null && !Array.isArray(currentValue)
+                            ? currentValue.observation || ""
+                            : "";
+                        onAnswerChange({
+                          selected: selectedList,
+                          observation: obs,
+                          none_problems: e.target.value,
+                        });
+                      }}
+                      placeholder="Please describe your specific challenges, bottlenecks or requirements..."
+                      className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-amber-300 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-amber-600 transition-all resize-y min-h-[76px]"
+                    />
+                  </div>
+                );
+              })()}
             </div>
           )}
 
@@ -699,6 +810,29 @@ export default function SurveyCard({
                         })}
                       </div>
                     )}
+
+                    {/* Dynamic text box if "None of the above" is selected in composite subquestion */}
+                    {((typeof subVal === "string" &&
+                      subVal.toLowerCase().includes("none of the above")) ||
+                      (Array.isArray(subVal) &&
+                        subVal.some(
+                          (s) => typeof s === "string" && s.toLowerCase().includes("none of the above")
+                        ))) && (
+                      <div className="pt-2 space-y-1.5 bg-amber-50/80 p-3.5 rounded-lg border border-amber-200 mt-2 animate-in fade-in slide-in-from-top-1 duration-200">
+                        <label className="text-xs font-semibold text-amber-950">
+                          Please describe what problems or challenges you are facing:
+                        </label>
+                        <textarea
+                          rows={2}
+                          value={currentValue?.[`${sub.id}_none_problems`] || ""}
+                          onChange={(e) =>
+                            handleSubQuestionChange(`${sub.id}_none_problems`, e.target.value)
+                          }
+                          placeholder="Please describe your specific challenges, bottlenecks or requirements..."
+                          className="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-amber-300 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-amber-600 transition-all resize-y min-h-[68px]"
+                        />
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -767,6 +901,29 @@ export default function SurveyCard({
                             </button>
                           );
                         })}
+                      </div>
+                    )}
+
+                    {/* Dynamic text box if "None of the above" is selected in contact subquestion */}
+                    {((typeof subVal === "string" &&
+                      subVal.toLowerCase().includes("none of the above")) ||
+                      (Array.isArray(subVal) &&
+                        subVal.some(
+                          (s) => typeof s === "string" && s.toLowerCase().includes("none of the above")
+                        ))) && (
+                      <div className="pt-2 space-y-1.5 bg-amber-50/80 p-3.5 rounded-lg border border-amber-200 mt-2 animate-in fade-in slide-in-from-top-1 duration-200">
+                        <label className="text-xs font-semibold text-amber-950">
+                          Please describe what problems or challenges you are facing:
+                        </label>
+                        <textarea
+                          rows={2}
+                          value={currentValue?.[`${sub.id}_none_problems`] || ""}
+                          onChange={(e) =>
+                            handleSubQuestionChange(`${sub.id}_none_problems`, e.target.value)
+                          }
+                          placeholder="Please describe your specific challenges, bottlenecks or requirements..."
+                          className="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-amber-300 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-amber-600 transition-all resize-y min-h-[68px]"
+                        />
                       </div>
                     )}
                   </div>

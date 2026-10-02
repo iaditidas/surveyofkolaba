@@ -77,7 +77,8 @@ export const STUDENT_QUESTIONS: QuestionDefinition[] = [
     linkReason: "Q1 told us the department, so we ask what that department's students actually build.",
     feedsDecision: "Workload profile",
     getNextQuestionId: (ans) => {
-      if (ans === "No project yet") {
+      const val = typeof ans === "object" && ans !== null ? ans.selected : ans;
+      if (val === "No project yet") {
         return "D8"; // Skip directly to Q8 per PDF specification
       }
       return "D3";
@@ -318,7 +319,7 @@ export const STUDENT_QUESTIONS: QuestionDefinition[] = [
           { id: "GDSC", label: "GDSC" },
           { id: "E-Cell", label: "E-Cell" },
           { id: "Other", label: "Other" },
-          { id: "None", label: "None" },
+          { id: "None of the above", label: "None of the above" },
         ],
         required: true,
       },
@@ -1053,7 +1054,7 @@ export const ADMIN_QUESTIONS: QuestionDefinition[] = [
           { id: "A few GPU machines shared across departments", label: "A few GPU machines shared across departments" },
           { id: "CPU-only labs", label: "CPU-only labs" },
           { id: "Free or paid cloud", label: "Free or paid cloud" },
-          { id: "None", label: "None" },
+          { id: "None of the above", label: "None of the above" },
         ],
         required: true,
       },
@@ -1073,7 +1074,7 @@ export const ADMIN_QUESTIONS: QuestionDefinition[] = [
           { id: "Cloud Object Storage (S3 / Cloud Buckets)", label: "Cloud Object Storage (S3 / Cloud Buckets)" },
           { id: "Network Attached Storage (NAS)", label: "Network Attached Storage (NAS)" },
           { id: "Local PC / Workstation Storage", label: "Local PC / Workstation Storage" },
-          { id: "None / Other", label: "None / Other" },
+          { id: "None of the above", label: "None of the above" },
         ],
         required: true,
       },
@@ -1198,7 +1199,7 @@ export const ADMIN_QUESTIONS: QuestionDefinition[] = [
       { id: "Student mentorship and certification", label: "Student mentorship and certification" },
       { id: "Hackathon / hiring demo day", label: "Hackathon / hiring demo day" },
       { id: "AI Centre of Excellence with an MoU and joint case study", label: "AI Centre of Excellence with an MoU and joint case study" },
-      { id: "None", label: "None" },
+      { id: "None of the above", label: "None of the above" },
     ],
     hasObservationText: true,
     observationLabel: "Observation / Requirement:",
