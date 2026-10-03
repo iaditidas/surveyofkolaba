@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Cpu, Lock, Mail, ArrowRight, ShieldCheck, AlertCircle } from "lucide-react";
+import { Cpu, Lock, Mail, ArrowRight, ShieldCheck, AlertCircle, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("kolaba@admin.com");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -31,47 +31,42 @@ export default function AdminLoginPage() {
         sessionStorage.setItem("kolaba_admin_user", JSON.stringify(data.user));
         router.push("/admin/dashboard");
       } else {
-        setError(data.error || "Invalid email or password. Please try again.");
+        setError(data.error || "Invalid credentials. Please verify your email and password.");
       }
     } catch (err) {
-      setError("Network error. Please try again.");
+      setError("Network or authentication error. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
-  const handleQuickLogin = () => {
-    setEmail("kolaba@admin.com");
-    setPassword("kolabacloud");
-  };
-
   return (
-    <div className="min-h-[85vh] flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md bg-white border border-slate-200 rounded-3xl p-8 sm:p-10 shadow-lg space-y-6">
+    <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4 py-12">
+      <div className="w-full max-w-md bg-white border border-slate-200/80 rounded-3xl p-8 sm:p-10 shadow-2xl space-y-6">
         {/* Header */}
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-2xl bg-[#0B132B] flex items-center justify-center text-white mx-auto shadow-md">
-            <Cpu className="w-6 h-6 text-teal-400" />
+          <div className="w-14 h-14 rounded-2xl bg-[#0B132B] flex items-center justify-center text-white mx-auto shadow-md">
+            <Cpu className="w-7 h-7 text-teal-400" />
           </div>
           <h1 className="text-2xl font-black text-slate-900 tracking-tight">
             Kolaba Admin Portal
           </h1>
           <p className="text-xs sm:text-sm text-slate-500">
-            Secure administrative access to survey responses &amp; analytics
+            Encrypted administrator access for survey operations
           </p>
         </div>
 
         {error && (
           <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 flex items-start gap-2.5 text-xs text-red-700">
             <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-600" />
-            <span>{error}</span>
+            <span className="font-medium">{error}</span>
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-1.5">
             <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
-              Admin Email / Username
+              Admin Email
             </label>
             <div className="relative">
               <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -80,7 +75,7 @@ export default function AdminLoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="kolaba@admin.com"
+                placeholder="admin@kolabacloud.com"
                 className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 text-sm font-medium text-slate-900 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
               />
             </div>
@@ -97,7 +92,7 @@ export default function AdminLoginPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••••••"
+                placeholder="Enter password..."
                 className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 text-sm font-medium text-slate-900 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
               />
             </div>
@@ -109,7 +104,7 @@ export default function AdminLoginPage() {
             className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-[#0B132B] text-white text-sm font-bold hover:bg-slate-800 transition-all shadow-md hover:shadow-lg disabled:opacity-50"
           >
             {loading ? (
-              <span>Authenticating...</span>
+              <span>Verifying credentials...</span>
             ) : (
               <>
                 <span>Sign In to Admin Portal</span>
@@ -119,28 +114,19 @@ export default function AdminLoginPage() {
           </button>
         </form>
 
-        {/* Quick credential filler for ease */}
-        <div className="pt-2 border-t border-slate-100 text-center space-y-2">
-          <button
-            type="button"
-            onClick={handleQuickLogin}
-            className="text-xs text-teal-700 hover:text-teal-900 font-semibold underline decoration-dotted"
-          >
-            Auto-fill Credentials (kolaba@admin.com)
-          </button>
-          <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-400">
-            <ShieldCheck className="w-3.5 h-3.5 text-teal-600" />
-            <span>Protected Enterprise Session</span>
-          </div>
-        </div>
-
-        <div className="text-center">
+        <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
           <Link
             href="/"
-            className="text-xs text-slate-500 hover:text-slate-900 font-medium"
+            className="inline-flex items-center gap-1 text-slate-600 hover:text-slate-900 font-semibold transition-colors"
           >
-            &larr; Return to Public Survey
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Exit to Website</span>
           </Link>
+
+          <div className="flex items-center gap-1.5 text-slate-400">
+            <ShieldCheck className="w-3.5 h-3.5 text-teal-600" />
+            <span>Rate-limited &amp; Protected</span>
+          </div>
         </div>
       </div>
     </div>

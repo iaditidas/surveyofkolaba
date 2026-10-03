@@ -1,0 +1,2238 @@
+[
+  {
+    "id": "surv_1791009146106_t3mpd",
+    "slug": "fintech-ai-risk-modeling-study-6106",
+    "title": "FinTech AI & Risk Modeling Study",
+    "description": "Assessing compute scaling and latency benchmarks for real-time fraud detection.",
+    "purpose": "Understand enterprise fintech requirements for low-latency AI inference clusters.",
+    "company": {
+      "name": "Vanguard FinTech Labs",
+      "tagline": "High-Throughput Risk & AI Analytics",
+      "description": "Building mission-critical financial compute pipelines for tier-1 institutions.",
+      "industry": "FinTech",
+      "website": "https://vanguardfintech.example.com",
+      "primaryContactName": "Devika Sharma",
+      "primaryContactEmail": "devika@vanguardfintech.example.com",
+      "location": "Hyderabad, India",
+      "brandPrimaryColor": "#0F172A",
+      "brandSecondaryColor": "#6366F1"
+    },
+    "status": "DRAFT",
+    "version": 2,
+    "industry": "Financial Technology & Banking",
+    "sections": [
+      {
+        "id": "sec_fintech_infra",
+        "title": "1. Model Serving Architecture",
+        "order": 1,
+        "visibility": "VISIBLE",
+        "questions": [
+          {
+            "id": "q_latency_req",
+            "type": "single-choice",
+            "title": "What is your target p99 inference latency for fraud scoring?",
+            "required": true,
+            "order": 1,
+            "options": [
+              {
+                "id": "sub_10ms",
+                "label": "Sub-10ms (Real-time card transactions)"
+              },
+              {
+                "id": "sub_50ms",
+                "label": "Sub-50ms (Session risk checks)"
+              },
+              {
+                "id": "batch",
+                "label": "Batch/Async processing"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "logic": [],
+    "settings": {
+      "allowMultipleResponses": false,
+      "isAnonymous": false,
+      "requireEmail": true,
+      "showProgressIndicator": true,
+      "showQuestionNumbers": true,
+      "completionMessage": "Thank you for completing this survey!",
+      "brandColor": "#0D9488"
+    },
+    "createdAt": "2026-10-03T06:32:26.106Z",
+    "updatedAt": "2026-10-03T11:27:48.935Z",
+    "responseCount": 0
+  },
+  {
+    "id": "eng-ai-colleges-2025",
+    "slug": "engineering-colleges-program",
+    "title": "Kolaba Cloud AI — Engineering Colleges Program",
+    "description": "A nationwide academic study mapping compute bottlenecks, GPU laboratory access, GenAI curriculum needs, and placement mentorship for engineering institutions.",
+    "purpose": "Understand the compute and mentorship requirements of Indian engineering colleges before designing sovereign AI cloud lab offerings.",
+    "industry": "Higher Education & Technology",
+    "status": "PUBLISHED",
+    "version": 2,
+    "company": {
+      "name": "Kolaba Cloud AI",
+      "tagline": "Sovereign AI & GPU Infrastructure for India",
+      "description": "Bengaluru-based enterprise AI company powering sovereign GPU compute, applied GenAI infrastructure, and industry-grade research labs for India's leading engineering institutions.",
+      "industry": "AI / Data / Technology",
+      "website": "https://kolabacloud.com",
+      "primaryContactName": "Kolaba Academic Relations",
+      "primaryContactEmail": "info@kolabacloud.com",
+      "location": "Bengaluru, Karnataka, India",
+      "brandPrimaryColor": "#0B132B",
+      "brandSecondaryColor": "#0D9488",
+      "logoUrl": "/icons/kolaba_logo.svg"
+    },
+    "settings": {
+      "allowMultipleResponses": false,
+      "isAnonymous": false,
+      "requireEmail": true,
+      "showProgressIndicator": true,
+      "showQuestionNumbers": true,
+      "completionMessage": "Thank you for shaping India's Sovereign AI Education ecosystem with Kolaba Cloud!",
+      "brandColor": "#0D9488",
+      "estCompletionMinutes": 4
+    },
+    "sections": [
+      {
+        "id": "sec_gate",
+        "title": "Role Selection (Gate Question)",
+        "description": "Select your role to unlock your tailored 10-question survey flow.",
+        "order": 1,
+        "visibility": "VISIBLE",
+        "questions": [
+          {
+            "id": "gate",
+            "type": "single-choice",
+            "title": "Which best describes you?",
+            "description": "Select your role to begin your tailored 10-question survey.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 1,
+            "options": [
+              {
+                "id": "student",
+                "label": "Student / Club Lead",
+                "sublabel": "Students, IEEE/ACM/GDSC leads, Hackathon participants & E-Cell members"
+              },
+              {
+                "id": "faculty",
+                "label": "HOD / Faculty",
+                "sublabel": "Department heads, professors, lab in-charges & project guides"
+              },
+              {
+                "id": "tpo",
+                "label": "Training & Placement Officer",
+                "sublabel": "Placement heads, coordinators & corporate relation officers"
+              },
+              {
+                "id": "admin",
+                "label": "Principal / Dean / Administrator",
+                "sublabel": "Principals, directors, deans & institutional decision makers"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sec_student",
+        "title": "Section D: Student / Club Lead Flow",
+        "description": "Department context, active project domains, compute bottlenecks, and student AI needs.",
+        "order": 2,
+        "visibility": "VISIBLE",
+        "questions": [
+          {
+            "id": "D1",
+            "type": "single-choice",
+            "title": "Which department are you studying in?",
+            "description": "Every later question is asked in the context of this answer.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 1,
+            "options": [
+              {
+                "id": "CSE",
+                "label": "CSE"
+              },
+              {
+                "id": "AI & DS / AIML",
+                "label": "AI & DS / AIML"
+              },
+              {
+                "id": "IT",
+                "label": "IT"
+              },
+              {
+                "id": "ECE / EEE",
+                "label": "ECE / EEE"
+              },
+              {
+                "id": "Mechanical / Civil / Other",
+                "label": "Mechanical / Civil / Other"
+              }
+            ]
+          },
+          {
+            "id": "D2",
+            "type": "single-choice",
+            "title": "What kind of project have you done, or are you doing, in your department?",
+            "description": "Tell us about the project domain or workload.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 2,
+            "options": [
+              {
+                "id": "AI / ML (vision, NLP, LLM chatbot, agents)",
+                "label": "AI / ML (vision, NLP, LLM chatbot, agents)"
+              },
+              {
+                "id": "Web or mobile app",
+                "label": "Web or mobile app"
+              },
+              {
+                "id": "IoT / embedded",
+                "label": "IoT / embedded"
+              },
+              {
+                "id": "Data analytics",
+                "label": "Data analytics"
+              },
+              {
+                "id": "Core-branch project",
+                "label": "Core-branch project"
+              },
+              {
+                "id": "Hackathon project only",
+                "label": "Hackathon project only"
+              },
+              {
+                "id": "No project yet",
+                "label": "No project yet"
+              }
+            ]
+          },
+          {
+            "id": "D3",
+            "type": "single-choice",
+            "title": "Is that project completed?",
+            "description": "Help us understand the current stage of your project.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 3,
+            "options": [
+              {
+                "id": "Completed",
+                "label": "Completed"
+              },
+              {
+                "id": "Nearly done",
+                "label": "Nearly done"
+              },
+              {
+                "id": "Still ongoing",
+                "label": "Still ongoing"
+              },
+              {
+                "id": "Left it midway",
+                "label": "Left it midway"
+              }
+            ]
+          },
+          {
+            "id": "D4",
+            "type": "single-choice",
+            "title": "How long has it been so far (or how long since you started)?",
+            "description": "Select the closest timeframe.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 4,
+            "options": [
+              {
+                "id": "Under 2 weeks",
+                "label": "Under 2 weeks"
+              },
+              {
+                "id": "2 to 4 weeks",
+                "label": "2 to 4 weeks"
+              },
+              {
+                "id": "1 to 3 months",
+                "label": "1 to 3 months"
+              },
+              {
+                "id": "3 to 6 months",
+                "label": "3 to 6 months"
+              },
+              {
+                "id": "Over 6 months",
+                "label": "Over 6 months"
+              }
+            ]
+          },
+          {
+            "id": "D5",
+            "type": "single-choice",
+            "title": "Compared with your original plan, how did the timeline go?",
+            "description": "Comparing actual execution against your initial plan.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 5,
+            "options": [
+              {
+                "id": "Finished early",
+                "label": "Finished early"
+              },
+              {
+                "id": "Finished on time",
+                "label": "Finished on time"
+              },
+              {
+                "id": "Slightly late (up to a month)",
+                "label": "Slightly late (up to a month)"
+              },
+              {
+                "id": "Very late",
+                "label": "Very late"
+              },
+              {
+                "id": "Never finished",
+                "label": "Never finished"
+              }
+            ]
+          },
+          {
+            "id": "D6",
+            "type": "multi-choice",
+            "title": "What slowed you down most? Pick up to 2.",
+            "description": "Select up to 2 key factors.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 6,
+            "options": [
+              {
+                "id": "Compute / GPU",
+                "label": "Compute / GPU"
+              },
+              {
+                "id": "Mentor or senior guidance",
+                "label": "Mentor or senior guidance"
+              },
+              {
+                "id": "Dataset",
+                "label": "Dataset"
+              },
+              {
+                "id": "Deployment",
+                "label": "Deployment"
+              },
+              {
+                "id": "Team coordination",
+                "label": "Team coordination"
+              },
+              {
+                "id": "Time and exams",
+                "label": "Time and exams"
+              },
+              {
+                "id": "Cost",
+                "label": "Cost"
+              }
+            ]
+          },
+          {
+            "id": "D7",
+            "type": "composite",
+            "title": "How did you handle that?",
+            "description": "If your top pick was compute, also tell us what you ran it on.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 7,
+            "subQuestions": [
+              {
+                "id": "handle_method",
+                "type": "single-choice",
+                "title": "How did you handle that obstacle or workflow?",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 1,
+                "options": [
+                  {
+                    "id": "Asked seniors or friends",
+                    "label": "Asked seniors or friends"
+                  },
+                  {
+                    "id": "Online tutorials / YouTube",
+                    "label": "Online tutorials / YouTube"
+                  },
+                  {
+                    "id": "Free tools (Colab, Kaggle)",
+                    "label": "Free tools (Colab, Kaggle)"
+                  },
+                  {
+                    "id": "Paid for a tool or cloud",
+                    "label": "Paid for a tool or cloud"
+                  },
+                  {
+                    "id": "Asked faculty",
+                    "label": "Asked faculty"
+                  },
+                  {
+                    "id": "Reduced the project scope",
+                    "label": "Reduced the project scope"
+                  },
+                  {
+                    "id": "Gave up",
+                    "label": "Gave up"
+                  }
+                ]
+              },
+              {
+                "id": "compute_hardware",
+                "type": "single-choice",
+                "title": "If compute was an obstacle/factor: what did you run it on?",
+                "description": "Optional if compute was not your main factor",
+                "required": false,
+                "visibility": "VISIBLE",
+                "order": 2,
+                "options": [
+                  {
+                    "id": "Laptop",
+                    "label": "Laptop"
+                  },
+                  {
+                    "id": "Colab / Kaggle",
+                    "label": "Colab / Kaggle"
+                  },
+                  {
+                    "id": "Paid cloud",
+                    "label": "Paid cloud"
+                  },
+                  {
+                    "id": "College GPU lab",
+                    "label": "College GPU lab"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "D8",
+            "type": "single-choice",
+            "title": "For your next project, which ONE free thing would help most?",
+            "description": "Select the single most valuable resource for your upcoming work.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 8,
+            "options": [
+              {
+                "id": "Sponsored GPU credits",
+                "label": "Sponsored GPU credits"
+              },
+              {
+                "id": "Starter templates (RAG bot, AI agent)",
+                "label": "Starter templates (RAG bot, AI agent)"
+              },
+              {
+                "id": "Mentor office hours",
+                "label": "Mentor office hours"
+              },
+              {
+                "id": "Code review",
+                "label": "Code review"
+              },
+              {
+                "id": "Industry certificate",
+                "label": "Industry certificate"
+              },
+              {
+                "id": "Mock interviews",
+                "label": "Mock interviews"
+              },
+              {
+                "id": "Free workshop for our club",
+                "label": "Free workshop for our club"
+              }
+            ]
+          },
+          {
+            "id": "D9",
+            "type": "single-choice",
+            "title": "Would you pay for that, and how much per month?",
+            "description": "Help us benchmark student-friendly pricing and subsidized tier structures.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 9,
+            "options": [
+              {
+                "id": "Nothing",
+                "label": "Nothing"
+              },
+              {
+                "id": "Under Rs. 300",
+                "label": "Under Rs. 300"
+              },
+              {
+                "id": "Rs. 300 to 1,000",
+                "label": "Rs. 300 to 1,000"
+              },
+              {
+                "id": "Rs. 1,000 to 3,000",
+                "label": "Rs. 1,000 to 3,000"
+              },
+              {
+                "id": "Above Rs. 3,000",
+                "label": "Above Rs. 3,000"
+              },
+              {
+                "id": "Only if there is a recognised certificate",
+                "label": "Only if there is a recognised certificate"
+              }
+            ]
+          },
+          {
+            "id": "D10",
+            "type": "contact",
+            "title": "Can your club share this survey or host a 30-minute session, in exchange for a free workshop?",
+            "description": "Connect with Kolaba Cloud AI for college workshops and campus ambassador programs.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 10,
+            "subQuestions": [
+              {
+                "id": "reach_channels",
+                "type": "multi-choice",
+                "title": "How does your club reach students? (Select all that apply)",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 1,
+                "options": [
+                  {
+                    "id": "WhatsApp",
+                    "label": "WhatsApp"
+                  },
+                  {
+                    "id": "Instagram",
+                    "label": "Instagram"
+                  },
+                  {
+                    "id": "Discord",
+                    "label": "Discord"
+                  },
+                  {
+                    "id": "LinkedIn",
+                    "label": "LinkedIn"
+                  },
+                  {
+                    "id": "Class visits",
+                    "label": "Class visits"
+                  }
+                ]
+              },
+              {
+                "id": "club_size",
+                "type": "single-choice",
+                "title": "Club / Community Size",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 2,
+                "options": [
+                  {
+                    "id": "Under 30",
+                    "label": "Under 30"
+                  },
+                  {
+                    "id": "30 to 100",
+                    "label": "30 to 100"
+                  },
+                  {
+                    "id": "Over 100",
+                    "label": "Over 100"
+                  }
+                ]
+              },
+              {
+                "id": "campus_ambassador",
+                "type": "single-choice",
+                "title": "Interested in becoming a Kolaba Campus Ambassador?",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 3,
+                "options": [
+                  {
+                    "id": "Yes",
+                    "label": "Yes"
+                  },
+                  {
+                    "id": "Maybe",
+                    "label": "Maybe"
+                  },
+                  {
+                    "id": "No",
+                    "label": "No"
+                  }
+                ]
+              },
+              {
+                "id": "chapter",
+                "type": "single-choice",
+                "title": "Chapter / Organization Affiliation",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 4,
+                "options": [
+                  {
+                    "id": "IEEE",
+                    "label": "IEEE"
+                  },
+                  {
+                    "id": "ACM",
+                    "label": "ACM"
+                  },
+                  {
+                    "id": "GDSC",
+                    "label": "GDSC"
+                  },
+                  {
+                    "id": "E-Cell",
+                    "label": "E-Cell"
+                  },
+                  {
+                    "id": "Other",
+                    "label": "Other"
+                  },
+                  {
+                    "id": "None of the above",
+                    "label": "None of the above"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sec_faculty",
+        "title": "Section B: HOD / Faculty Flow",
+        "description": "Institutional AI infrastructure, GPU clusters, curriculum gaps, research compute, and FDP needs.",
+        "order": 3,
+        "visibility": "VISIBLE",
+        "questions": [
+          {
+            "id": "B1",
+            "type": "composite",
+            "title": "Which college, department and role do you have?",
+            "description": "Tell us about your institution and academic role.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 1,
+            "subQuestions": [
+              {
+                "id": "college_name",
+                "type": "short-text",
+                "title": "College / University Name",
+                "placeholder": "e.g. RV College of Engineering, PES University",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 1
+              },
+              {
+                "id": "city_state",
+                "type": "short-text",
+                "title": "City, State",
+                "placeholder": "e.g. Bengaluru, Karnataka",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 2
+              },
+              {
+                "id": "department",
+                "type": "short-text",
+                "title": "Department",
+                "placeholder": "e.g. Computer Science & Engineering",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 3
+              },
+              {
+                "id": "role",
+                "type": "single-choice",
+                "title": "Academic Role",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 4,
+                "options": [
+                  {
+                    "id": "HOD",
+                    "label": "HOD"
+                  },
+                  {
+                    "id": "Professor",
+                    "label": "Professor"
+                  },
+                  {
+                    "id": "Associate/Assistant Professor",
+                    "label": "Associate / Assistant Professor"
+                  },
+                  {
+                    "id": "Lab in-charge",
+                    "label": "Lab in-charge"
+                  },
+                  {
+                    "id": "Project guide",
+                    "label": "Project guide"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "B2",
+            "type": "multi-choice",
+            "title": "Which project areas do your final-year students choose most?",
+            "description": "Select all that apply for your department.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 2,
+            "options": [
+              {
+                "id": "Machine learning",
+                "label": "Machine learning"
+              },
+              {
+                "id": "Deep learning / computer vision",
+                "label": "Deep learning / computer vision"
+              },
+              {
+                "id": "NLP / LLM chatbots",
+                "label": "NLP / LLM chatbots"
+              },
+              {
+                "id": "Data analytics",
+                "label": "Data analytics"
+              },
+              {
+                "id": "Web or mobile apps",
+                "label": "Web or mobile apps"
+              },
+              {
+                "id": "IoT / embedded",
+                "label": "IoT / embedded"
+              },
+              {
+                "id": "Core-branch projects",
+                "label": "Core-branch projects"
+              }
+            ]
+          },
+          {
+            "id": "B3",
+            "type": "single-choice",
+            "title": "Of those projects, roughly what share finish on time?",
+            "description": "Estimate the on-time completion percentage across final-year batches.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 3,
+            "options": [
+              {
+                "id": "Under 25%",
+                "label": "Under 25%"
+              },
+              {
+                "id": "25 to 50%",
+                "label": "25 to 50%"
+              },
+              {
+                "id": "50 to 75%",
+                "label": "50 to 75%"
+              },
+              {
+                "id": "Over 75%",
+                "label": "Over 75%"
+              }
+            ]
+          },
+          {
+            "id": "B4",
+            "type": "single-choice",
+            "title": "From topic approval to completion, how long does a typical project take?",
+            "description": "Average timeline from proposal submission to final evaluation.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 4,
+            "options": [
+              {
+                "id": "Under 2 months",
+                "label": "Under 2 months"
+              },
+              {
+                "id": "2 to 4 months",
+                "label": "2 to 4 months"
+              },
+              {
+                "id": "4 to 6 months",
+                "label": "4 to 6 months"
+              },
+              {
+                "id": "Over 6 months, often spills into the next semester",
+                "label": "Over 6 months, often spills into the next semester"
+              }
+            ]
+          },
+          {
+            "id": "B5",
+            "type": "ranking",
+            "title": "What is the main reason projects run late or fail? Rank the top 3.",
+            "description": "Select and order your top 3 factors (1st = most significant).",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 5,
+            "options": [
+              {
+                "id": "GPU / compute access",
+                "label": "GPU / compute access"
+              },
+              {
+                "id": "Mentorship",
+                "label": "Mentorship"
+              },
+              {
+                "id": "Real-world problem statements",
+                "label": "Real-world problem statements"
+              },
+              {
+                "id": "Datasets",
+                "label": "Datasets"
+              },
+              {
+                "id": "Deployment skills",
+                "label": "Deployment skills"
+              },
+              {
+                "id": "Student time and workload",
+                "label": "Student time and workload"
+              }
+            ]
+          },
+          {
+            "id": "B6",
+            "type": "multi-choice",
+            "title": "How do students currently work around that problem?",
+            "description": "Select all workarounds and stopgaps used by students.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 6,
+            "options": [
+              {
+                "id": "Personal laptops",
+                "label": "Personal laptops"
+              },
+              {
+                "id": "Free cloud tiers (Colab, Kaggle)",
+                "label": "Free cloud tiers (Colab, Kaggle)"
+              },
+              {
+                "id": "Paid cloud, self-funded",
+                "label": "Paid cloud, self-funded"
+              },
+              {
+                "id": "College GPU lab",
+                "label": "College GPU lab"
+              },
+              {
+                "id": "Senior students",
+                "label": "Senior students"
+              },
+              {
+                "id": "Online courses",
+                "label": "Online courses"
+              },
+              {
+                "id": "They reduce project scope",
+                "label": "They reduce project scope"
+              }
+            ]
+          },
+          {
+            "id": "B7",
+            "type": "composite",
+            "title": "Can you and your colleagues guide students on hands-on GenAI, AI infrastructure, Cloud and IOT projects?",
+            "description": "Assess faculty comfort level and most effective upskilling formats.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 7,
+            "subQuestions": [
+              {
+                "id": "faculty_comfort",
+                "type": "rating",
+                "title": "Faculty comfort level in guiding hands-on GenAI, AI infrastructure, Cloud and IOT projects:",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 1,
+                "min": 1,
+                "max": 5,
+                "minLabel": "1 = Very low",
+                "maxLabel": "5 = Very high"
+              },
+              {
+                "id": "fdp_preference",
+                "type": "single-choice",
+                "title": "What faculty development format would help most?",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 2,
+                "options": [
+                  {
+                    "id": "One-week FDP",
+                    "label": "One-week FDP"
+                  },
+                  {
+                    "id": "Weekend workshops",
+                    "label": "Weekend workshops"
+                  },
+                  {
+                    "id": "Self-paced online",
+                    "label": "Self-paced online"
+                  },
+                  {
+                    "id": "Co-teaching with industry",
+                    "label": "Co-teaching with industry"
+                  },
+                  {
+                    "id": "Ready-made lab modules",
+                    "label": "Ready-made lab modules"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "B8",
+            "type": "composite",
+            "title": "Which single support would best fix the main problem from Q5?",
+            "description": "Identify the top offering and preferred institutional model.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 8,
+            "subQuestions": [
+              {
+                "id": "primary_support",
+                "type": "single-choice",
+                "title": "Which single support would best fix the main issue?",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 1,
+                "options": [
+                  {
+                    "id": "Cloud GPU credits",
+                    "label": "Cloud GPU credits"
+                  },
+                  {
+                    "id": "On-campus GPU workstations",
+                    "label": "On-campus GPU workstations"
+                  },
+                  {
+                    "id": "Lab sandbox with curriculum modules",
+                    "label": "Lab sandbox with curriculum modules"
+                  },
+                  {
+                    "id": "Mentorship and code review",
+                    "label": "Mentorship and code review"
+                  },
+                  {
+                    "id": "Industry certification",
+                    "label": "Industry certification"
+                  },
+                  {
+                    "id": "Faculty training",
+                    "label": "Faculty training"
+                  }
+                ]
+              },
+              {
+                "id": "preferred_model",
+                "type": "single-choice",
+                "title": "Preferred institutional model:",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 2,
+                "options": [
+                  {
+                    "id": "Own the hardware",
+                    "label": "Own the hardware"
+                  },
+                  {
+                    "id": "Subscribe",
+                    "label": "Subscribe"
+                  },
+                  {
+                    "id": "Sponsored by industry",
+                    "label": "Sponsored by industry"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "B9",
+            "type": "composite",
+            "title": "Who decides on adopting that support, and what proof would you need?",
+            "description": "Key decision makers and evidentiary requirements.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 9,
+            "subQuestions": [
+              {
+                "id": "decider",
+                "type": "single-choice",
+                "title": "Primary decision maker for adopting support:",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 1,
+                "options": [
+                  {
+                    "id": "Me",
+                    "label": "Me"
+                  },
+                  {
+                    "id": "HOD",
+                    "label": "HOD"
+                  },
+                  {
+                    "id": "Principal",
+                    "label": "Principal"
+                  },
+                  {
+                    "id": "TPO",
+                    "label": "TPO"
+                  },
+                  {
+                    "id": "Committee",
+                    "label": "Committee"
+                  }
+                ]
+              },
+              {
+                "id": "proof_needed",
+                "type": "multi-choice",
+                "title": "Proof / documentation required before approval (Select all that apply):",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 2,
+                "options": [
+                  {
+                    "id": "Pilot results",
+                    "label": "Pilot results"
+                  },
+                  {
+                    "id": "Mapping to university syllabus",
+                    "label": "Mapping to university syllabus"
+                  },
+                  {
+                    "id": "Data privacy",
+                    "label": "Data privacy"
+                  },
+                  {
+                    "id": "Ease of use",
+                    "label": "Ease of use"
+                  },
+                  {
+                    "id": "Low cost",
+                    "label": "Low cost"
+                  },
+                  {
+                    "id": "Certification value",
+                    "label": "Certification value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "B10",
+            "type": "contact",
+            "title": "Would you run a pilot with a final-year batch (about 10 to 30 students) or host a workshop?",
+            "description": "Partner with Kolaba Cloud AI for pilot cohorts and faculty workshops.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 10,
+            "subQuestions": [
+              {
+                "id": "pilot_interest",
+                "type": "multi-choice",
+                "title": "Select your interest (Select all that apply):",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 1,
+                "options": [
+                  {
+                    "id": "Pilot with a project batch",
+                    "label": "Pilot with a project batch"
+                  },
+                  {
+                    "id": "Host a faculty workshop",
+                    "label": "Host a faculty workshop"
+                  },
+                  {
+                    "id": "Host a student info session",
+                    "label": "Host a student info session"
+                  },
+                  {
+                    "id": "Not right now",
+                    "label": "Not right now"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sec_tpo",
+        "title": "Section C: Training & Placement Officer Flow",
+        "description": "Placement trends, recruitment requirements, skill gaps, package differentials, and hiring partnerships.",
+        "order": 4,
+        "visibility": "VISIBLE",
+        "questions": [
+          {
+            "id": "C1",
+            "type": "composite",
+            "title": "Which college is this, and how big is your CS/AI final-year batch?",
+            "description": "Tell us about your institution and student placement batch size.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 1,
+            "subQuestions": [
+              {
+                "id": "college_name",
+                "type": "short-text",
+                "title": "College Name & City/State",
+                "placeholder": "e.g. BMS College of Engineering, Bengaluru",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 1
+              },
+              {
+                "id": "batch_size",
+                "type": "single-choice",
+                "title": "CS / AI final-year batch size:",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 2,
+                "options": [
+                  {
+                    "id": "Under 60",
+                    "label": "Under 60"
+                  },
+                  {
+                    "id": "60 to 120",
+                    "label": "60 to 120"
+                  },
+                  {
+                    "id": "120 to 250",
+                    "label": "120 to 250"
+                  },
+                  {
+                    "id": "Over 250",
+                    "label": "Over 250"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "C2",
+            "type": "single-choice",
+            "title": "Last year, roughly what share of that batch was placed in tech roles?",
+            "description": "Estimated tech placement percentage from the most recent graduating batch.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 2,
+            "options": [
+              {
+                "id": "Under 20%",
+                "label": "Under 20%"
+              },
+              {
+                "id": "20 to 40%",
+                "label": "20 to 40%"
+              },
+              {
+                "id": "40 to 60%",
+                "label": "40 to 60%"
+              },
+              {
+                "id": "60 to 80%",
+                "label": "60 to 80%"
+              },
+              {
+                "id": "Over 80%",
+                "label": "Over 80%"
+              },
+              {
+                "id": "Not sure",
+                "label": "Not sure"
+              }
+            ]
+          },
+          {
+            "id": "C3",
+            "type": "multi-choice",
+            "title": "Which kinds of recruiters hired those students?",
+            "description": "Select all types of hiring organizations.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 3,
+            "options": [
+              {
+                "id": "IT services",
+                "label": "IT services"
+              },
+              {
+                "id": "Product companies",
+                "label": "Product companies"
+              },
+              {
+                "id": "Startups",
+                "label": "Startups"
+              },
+              {
+                "id": "Global capability centres",
+                "label": "Global capability centres (GCCs)"
+              },
+              {
+                "id": "Banking / financial services",
+                "label": "Banking / financial services"
+              },
+              {
+                "id": "Core engineering",
+                "label": "Core engineering"
+              },
+              {
+                "id": "AI-focused firms",
+                "label": "AI-focused firms"
+              }
+            ]
+          },
+          {
+            "id": "C4",
+            "type": "multi-choice",
+            "title": "What did those recruiters most often say was missing in your students? (up to 3)",
+            "description": "Pick up to 3 common gap areas highlighted by interviewers.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 4,
+            "options": [
+              {
+                "id": "Lack of knowledge on AI infrastructure, Cloud technologies, IOT projects",
+                "label": "Lack of knowledge on  AI infrastructure, Cloud technologies, IOT projects"
+              },
+              {
+                "id": "Lack of hands of experience into real world industry project samples / internship",
+                "label": "Lack of hands of experience into real world industry project samples / internship"
+              },
+              {
+                "id": "Lack practice and access to GPU infra / Gen AI LLM exposure / IOT full stack development",
+                "label": "Lack practice and access to GPU infra / Gen AI LLM exposure / IOT full stack development"
+              }
+            ]
+          },
+          {
+            "id": "C5",
+            "type": "composite",
+            "title": "How much do students' final-year projects help them in technical interviews?",
+            "description": "Evaluate the direct impact of capstone projects during campus placements.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 5,
+            "subQuestions": [
+              {
+                "id": "project_interview_value",
+                "type": "rating",
+                "title": "Impact on technical interviews:",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 1,
+                "min": 1,
+                "max": 5,
+                "minLabel": "1 = Hardly at all",
+                "maxLabel": "5 = A major advantage"
+              },
+              {
+                "id": "recruiters_ask_frequency",
+                "type": "single-choice",
+                "title": "Do recruiters ask in-depth questions about projects?",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 2,
+                "options": [
+                  {
+                    "id": "Always",
+                    "label": "Always"
+                  },
+                  {
+                    "id": "Often",
+                    "label": "Often"
+                  },
+                  {
+                    "id": "Rarely",
+                    "label": "Rarely"
+                  },
+                  {
+                    "id": "Never",
+                    "label": "Never"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "C6",
+            "type": "single-choice",
+            "title": "How do you currently showcase student projects to recruiters?",
+            "description": "Current format for highlighting student engineering talent.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 6,
+            "options": [
+              {
+                "id": "Nothing formal",
+                "label": "Nothing formal"
+              },
+              {
+                "id": "Internal project expo",
+                "label": "Internal project expo"
+              },
+              {
+                "id": "Hackathon results",
+                "label": "Hackathon results"
+              },
+              {
+                "id": "External certifications",
+                "label": "External certifications"
+              },
+              {
+                "id": "Recruiter-led demo day",
+                "label": "Recruiter-led demo day"
+              },
+              {
+                "id": "Other",
+                "label": "Other"
+              }
+            ]
+          },
+          {
+            "id": "C7",
+            "type": "ranking",
+            "title": "Which would best close the gap from Q4? Rank your top 3.",
+            "description": "Rank the top 3 interventions to boost recruiter hire rates (1st = most effective).",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 7,
+            "options": [
+              {
+                "id": "Mentored, industry-style project track",
+                "label": "Mentored, industry-style project track"
+              },
+              {
+                "id": "Co-branded certificate",
+                "label": "Co-branded certificate"
+              },
+              {
+                "id": "Mock interviews",
+                "label": "Mock interviews"
+              },
+              {
+                "id": "Demo day with hiring partners",
+                "label": "Demo day with hiring partners"
+              },
+              {
+                "id": "AI skills bootcamp",
+                "label": "AI skills bootcamp"
+              },
+              {
+                "id": "Resume and portfolio reviews",
+                "label": "Resume and portfolio reviews"
+              }
+            ]
+          },
+          {
+            "id": "C8",
+            "type": "composite",
+            "title": "If your #1 choice existed, who should pay and what is reasonable per student?",
+            "description": "Cost distribution and pricing viability per enrolled student.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 8,
+            "subQuestions": [
+              {
+                "id": "funding_source",
+                "type": "single-choice",
+                "title": "Who should fund this program?",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 1,
+                "options": [
+                  {
+                    "id": "College",
+                    "label": "College"
+                  },
+                  {
+                    "id": "Students",
+                    "label": "Students"
+                  },
+                  {
+                    "id": "Industry-sponsored",
+                    "label": "Industry-sponsored"
+                  },
+                  {
+                    "id": "Shared",
+                    "label": "Shared"
+                  }
+                ]
+              },
+              {
+                "id": "cost_per_student",
+                "type": "single-choice",
+                "title": "What is a reasonable cost per student?",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 2,
+                "options": [
+                  {
+                    "id": "Free only",
+                    "label": "Free only"
+                  },
+                  {
+                    "id": "Up to Rs. 500",
+                    "label": "Up to Rs. 500"
+                  },
+                  {
+                    "id": "Rs. 500 to 2,000",
+                    "label": "Rs. 500 to 2,000"
+                  },
+                  {
+                    "id": "Rs. 2,000 to 5,000",
+                    "label": "Rs. 2,000 to 5,000"
+                  },
+                  {
+                    "id": "Above Rs. 5,000",
+                    "label": "Above Rs. 5,000"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "C9",
+            "type": "composite",
+            "title": "Who approves such a program and how long does it take?",
+            "description": "Approval authority and decision timeline.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 9,
+            "subQuestions": [
+              {
+                "id": "approver",
+                "type": "single-choice",
+                "title": "Program Approver:",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 1,
+                "options": [
+                  {
+                    "id": "TPO alone",
+                    "label": "TPO alone"
+                  },
+                  {
+                    "id": "TPO with Principal",
+                    "label": "TPO with Principal"
+                  },
+                  {
+                    "id": "Placement committee",
+                    "label": "Placement committee"
+                  },
+                  {
+                    "id": "Management",
+                    "label": "Management"
+                  }
+                ]
+              },
+              {
+                "id": "approval_timeline",
+                "type": "single-choice",
+                "title": "Typical approval turnaround time:",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 2,
+                "options": [
+                  {
+                    "id": "Under 1 month",
+                    "label": "Under 1 month"
+                  },
+                  {
+                    "id": "1 to 3 months",
+                    "label": "1 to 3 months"
+                  },
+                  {
+                    "id": "3 to 6 months",
+                    "label": "3 to 6 months"
+                  },
+                  {
+                    "id": "Over 6 months",
+                    "label": "Over 6 months"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "C10",
+            "type": "contact",
+            "title": "Would you host a free pilot cohort or a recruiter demo day with Kolaba?",
+            "description": "Explore placement partnership opportunities with Kolaba Cloud AI.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 10,
+            "subQuestions": [
+              {
+                "id": "tpo_pilot_interest",
+                "type": "multi-choice",
+                "title": "Select preferred collaboration models (Select all that apply):",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 1,
+                "options": [
+                  {
+                    "id": "Free pilot project cohort",
+                    "label": "Free pilot project cohort"
+                  },
+                  {
+                    "id": "Demo day",
+                    "label": "Demo day"
+                  },
+                  {
+                    "id": "Mock interview sessions",
+                    "label": "Mock interview sessions"
+                  },
+                  {
+                    "id": "Not right now",
+                    "label": "Not right now"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sec_admin",
+        "title": "Section A: Principal / Dean / Administrator Flow",
+        "description": "Institutional governance, Capex vs Opex budget, accreditation targets, and strategic cloud partnerships.",
+        "order": 5,
+        "visibility": "VISIBLE",
+        "questions": [
+          {
+            "id": "A1",
+            "type": "composite",
+            "title": "Please tell us about your institution.",
+            "description": "Institutional profile and active technical departments.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 1,
+            "subQuestions": [
+              {
+                "id": "college_details",
+                "type": "short-text",
+                "title": "College Name & City/State",
+                "placeholder": "e.g. National Institute of Technology, Surathkal",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 1
+              },
+              {
+                "id": "institution_type",
+                "type": "single-choice",
+                "title": "Institution Type:",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 2,
+                "options": [
+                  {
+                    "id": "Government",
+                    "label": "Government"
+                  },
+                  {
+                    "id": "Government-aided",
+                    "label": "Government-aided"
+                  },
+                  {
+                    "id": "Private",
+                    "label": "Private"
+                  },
+                  {
+                    "id": "Autonomous",
+                    "label": "Autonomous"
+                  },
+                  {
+                    "id": "Deemed university",
+                    "label": "Deemed university"
+                  }
+                ]
+              },
+              {
+                "id": "branches_offered",
+                "type": "multi-choice",
+                "title": "Branches Offered (Select all that apply):",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 3,
+                "options": [
+                  {
+                    "id": "CSE",
+                    "label": "CSE"
+                  },
+                  {
+                    "id": "AI & DS",
+                    "label": "AI & DS"
+                  },
+                  {
+                    "id": "AIML",
+                    "label": "AIML"
+                  },
+                  {
+                    "id": "IT",
+                    "label": "IT"
+                  },
+                  {
+                    "id": "ECE/EEE",
+                    "label": "ECE / EEE"
+                  },
+                  {
+                    "id": "Other",
+                    "label": "Other"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "A2",
+            "type": "composite",
+            "title": "In the branches you listed, roughly how many final-year students do AI/ML projects each year?",
+            "description": "Estimated student volume and project domains in your institution.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 2,
+            "subQuestions": [
+              {
+                "id": "student_volume",
+                "type": "single-choice",
+                "title": "Roughly how many final-year students do AI/ML projects each year?",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 1,
+                "options": [
+                  {
+                    "id": "Under 30",
+                    "label": "Under 30"
+                  },
+                  {
+                    "id": "30 to 100",
+                    "label": "30 to 100"
+                  },
+                  {
+                    "id": "100 to 250",
+                    "label": "100 to 250"
+                  },
+                  {
+                    "id": "Over 250",
+                    "label": "Over 250"
+                  },
+                  {
+                    "id": "None yet",
+                    "label": "None yet"
+                  }
+                ]
+              },
+              {
+                "id": "project_types",
+                "type": "multi-choice",
+                "title": "What kinds of projects do students do in your institution? (Select all that apply):",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 2,
+                "options": [
+                  {
+                    "id": "Real industry-based AI Infrastructure projects",
+                    "label": "Real industry-based AI Infrastructure projects"
+                  },
+                  {
+                    "id": "Cloud Projects",
+                    "label": "Cloud Projects"
+                  },
+                  {
+                    "id": "Generative AI/LLM projects",
+                    "label": "Generative AI/LLM projects"
+                  },
+                  {
+                    "id": "IOT projects",
+                    "label": "IOT projects"
+                  }
+                ]
+              },
+              {
+                "id": "observation",
+                "type": "long-text",
+                "title": "Observation / Requirement on Projects:",
+                "placeholder": "Write your observation or requirement...",
+                "required": false,
+                "visibility": "VISIBLE",
+                "order": 3
+              }
+            ]
+          },
+          {
+            "id": "A3",
+            "type": "composite",
+            "title": "What cloud infrastructure and storage options do students use for projects and data workflows?",
+            "description": "Tell us about cloud compute and storage options in use.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 3,
+            "subQuestions": [
+              {
+                "id": "cloud_infra",
+                "type": "single-choice",
+                "title": "Cloud infrastructure in use:",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 1,
+                "options": [
+                  {
+                    "id": "Dedicated GPU lab",
+                    "label": "Dedicated GPU lab"
+                  },
+                  {
+                    "id": "A few GPU machines shared across departments",
+                    "label": "A few GPU machines shared across departments"
+                  },
+                  {
+                    "id": "CPU-only labs",
+                    "label": "CPU-only labs"
+                  },
+                  {
+                    "id": "Free or paid cloud",
+                    "label": "Free or paid cloud"
+                  },
+                  {
+                    "id": "None of the above",
+                    "label": "None of the above"
+                  }
+                ]
+              },
+              {
+                "id": "cloud_infra_observation",
+                "type": "long-text",
+                "title": "Observation / Requirement on Cloud Infrastructure:",
+                "placeholder": "Write your observation or requirement on cloud infrastructure...",
+                "required": false,
+                "visibility": "VISIBLE",
+                "order": 2
+              },
+              {
+                "id": "storage_options",
+                "type": "single-choice",
+                "title": "Storage option for projects and data workflows:",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 3,
+                "options": [
+                  {
+                    "id": "High-Performance NVMe/SSD Storage",
+                    "label": "High-Performance NVMe/SSD Storage"
+                  },
+                  {
+                    "id": "Cloud Object Storage (S3 / Cloud Buckets)",
+                    "label": "Cloud Object Storage (S3 / Cloud Buckets)"
+                  },
+                  {
+                    "id": "Network Attached Storage (NAS)",
+                    "label": "Network Attached Storage (NAS)"
+                  },
+                  {
+                    "id": "Local PC / Workstation Storage",
+                    "label": "Local PC / Workstation Storage"
+                  },
+                  {
+                    "id": "None of the above",
+                    "label": "None of the above"
+                  }
+                ]
+              },
+              {
+                "id": "storage_observation",
+                "type": "long-text",
+                "title": "Observation / Requirement on Storage Options:",
+                "placeholder": "Write your observation or requirement on storage...",
+                "required": false,
+                "visibility": "VISIBLE",
+                "order": 4
+              }
+            ]
+          },
+          {
+            "id": "A4",
+            "type": "composite",
+            "title": "Is that enough for those students?",
+            "description": "Evaluating institutional compute sufficiency and potential bottlenecks.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 4,
+            "subQuestions": [
+              {
+                "id": "compute_sufficiency_score",
+                "type": "rating",
+                "title": "Sufficiency rating:",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 1,
+                "min": 1,
+                "max": 5,
+                "minLabel": "1 = Not at all",
+                "maxLabel": "5 = More than enough"
+              },
+              {
+                "id": "biggest_shortfall",
+                "type": "single-choice",
+                "title": "What is the biggest shortfall?",
+                "description": "Appears if sufficiency rating is 1, 2, or 3",
+                "required": false,
+                "visibility": "VISIBLE",
+                "order": 2,
+                "options": [
+                  {
+                    "id": "Capacity",
+                    "label": "Capacity"
+                  },
+                  {
+                    "id": "Speed",
+                    "label": "Speed"
+                  },
+                  {
+                    "id": "Access hours",
+                    "label": "Access hours"
+                  },
+                  {
+                    "id": "Software",
+                    "label": "Software"
+                  },
+                  {
+                    "id": "Support",
+                    "label": "Support"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "A5",
+            "type": "multi-choice",
+            "title": "What has held back upgrading? (select up to 3)",
+            "description": "Select up to 3 principal organizational or budget hurdles.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 5,
+            "options": [
+              {
+                "id": "Capex / budget",
+                "label": "Capex / budget"
+              },
+              {
+                "id": "Procurement delays",
+                "label": "Procurement delays"
+              },
+              {
+                "id": "No staff to maintain hardware",
+                "label": "No staff to maintain hardware"
+              },
+              {
+                "id": "Power, cooling or space",
+                "label": "Power, cooling or space"
+              },
+              {
+                "id": "Unclear return on investment",
+                "label": "Unclear return on investment"
+              },
+              {
+                "id": "Faculty lack GenAI expertise",
+                "label": "Faculty lack GenAI expertise"
+              },
+              {
+                "id": "Not planning to upgrade",
+                "label": "Not planning to upgrade"
+              }
+            ]
+          },
+          {
+            "id": "A6",
+            "type": "ranking",
+            "title": "Which outcome does this gap hurt most for the institution? Rank the top 3.",
+            "description": "Select and rank the top 3 institutional metrics impacted (1st = greatest impact).",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 6,
+            "options": [
+              {
+                "id": "NBA / NAAC accreditation evidence",
+                "label": "NBA / NAAC accreditation evidence"
+              },
+              {
+                "id": "NIRF ranking",
+                "label": "NIRF ranking"
+              },
+              {
+                "id": "Placement outcomes",
+                "label": "Placement outcomes"
+              },
+              {
+                "id": "Research output",
+                "label": "Research output"
+              },
+              {
+                "id": "Industry partnerships",
+                "label": "Industry partnerships"
+              },
+              {
+                "id": "Admissions and enrolment demand",
+                "label": "Admissions and enrolment demand"
+              }
+            ]
+          },
+          {
+            "id": "A7",
+            "type": "single-choice",
+            "title": "Which responsibility / solution would you consider first to improve that outcome?",
+            "description": "Select the most attractive institutional responsibility or solution model.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 7,
+            "options": [
+              {
+                "id": "Cloud GPU credits for student projects",
+                "label": "Cloud GPU credits for student projects"
+              },
+              {
+                "id": "On-campus AI lab (workstations plus software)",
+                "label": "On-campus AI lab (workstations plus software)"
+              },
+              {
+                "id": "Faculty development programme on GenAI",
+                "label": "Faculty development programme on GenAI"
+              },
+              {
+                "id": "Student mentorship and certification",
+                "label": "Student mentorship and certification"
+              },
+              {
+                "id": "Hackathon / hiring demo day",
+                "label": "Hackathon / hiring demo day"
+              },
+              {
+                "id": "AI Centre of Excellence with an MoU and joint case study",
+                "label": "AI Centre of Excellence with an MoU and joint case study"
+              },
+              {
+                "id": "None of the above",
+                "label": "None of the above"
+              }
+            ]
+          },
+          {
+            "id": "A8",
+            "type": "single-choice",
+            "title": "If student work ran on that platform, where must the data stay?",
+            "description": "Institutional data residency and compliance guidelines.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 8,
+            "options": [
+              {
+                "id": "On campus only",
+                "label": "On campus only"
+              },
+              {
+                "id": "Private cloud / VPC inside India",
+                "label": "Private cloud / VPC inside India"
+              },
+              {
+                "id": "Any Indian cloud region",
+                "label": "Any Indian cloud region"
+              },
+              {
+                "id": "No restriction",
+                "label": "No restriction"
+              }
+            ]
+          },
+          {
+            "id": "A9",
+            "type": "composite",
+            "title": "Who approves this kind of responsibility / solution, how long does it take, and is budget set aside?",
+            "description": "Decision governance and budget allocation details.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 9,
+            "subQuestions": [
+              {
+                "id": "approver",
+                "type": "single-choice",
+                "title": "Approving Authority:",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 1,
+                "options": [
+                  {
+                    "id": "Principal/Director",
+                    "label": "Principal / Director"
+                  },
+                  {
+                    "id": "Management/Trust",
+                    "label": "Management / Trust"
+                  },
+                  {
+                    "id": "HOD",
+                    "label": "HOD"
+                  },
+                  {
+                    "id": "Committee",
+                    "label": "Committee"
+                  },
+                  {
+                    "id": "Government/university",
+                    "label": "Government / University"
+                  }
+                ]
+              },
+              {
+                "id": "procurement_timeline",
+                "type": "single-choice",
+                "title": "Procurement / Approval Timeline:",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 2,
+                "options": [
+                  {
+                    "id": "Under 1 month",
+                    "label": "Under 1 month"
+                  },
+                  {
+                    "id": "1 to 3 months",
+                    "label": "1 to 3 months"
+                  },
+                  {
+                    "id": "3 to 6 months",
+                    "label": "3 to 6 months"
+                  },
+                  {
+                    "id": "Over 6 months",
+                    "label": "Over 6 months"
+                  },
+                  {
+                    "id": "Tender/GeM",
+                    "label": "Tender / GeM"
+                  }
+                ]
+              },
+              {
+                "id": "budget_set_aside",
+                "type": "single-choice",
+                "title": "Is budget set aside this year?",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 3,
+                "options": [
+                  {
+                    "id": "Yes",
+                    "label": "Yes"
+                  },
+                  {
+                    "id": "No",
+                    "label": "No"
+                  },
+                  {
+                    "id": "Not sure",
+                    "label": "Not sure"
+                  }
+                ]
+              },
+              {
+                "id": "budget_range",
+                "type": "single-choice",
+                "title": "Budget Range (if set aside):",
+                "required": false,
+                "visibility": "VISIBLE",
+                "order": 4,
+                "options": [
+                  {
+                    "id": "Under Rs. 5 lakh",
+                    "label": "Under Rs. 5 lakh"
+                  },
+                  {
+                    "id": "5 to 15 lakh",
+                    "label": "Rs. 5 to 15 lakh"
+                  },
+                  {
+                    "id": "15 to 50 lakh",
+                    "label": "Rs. 15 to 50 lakh"
+                  },
+                  {
+                    "id": "Above 50 lakh",
+                    "label": "Above Rs. 50 lakh"
+                  },
+                  {
+                    "id": "Prefer not to say",
+                    "label": "Prefer not to say"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "A10",
+            "type": "contact",
+            "title": "Would you welcome a free, capped pilot of that responsibility / solution, in exchange for feedback and a joint case study?",
+            "description": "Launch a pilot cohort with Kolaba Cloud AI for your college.",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 10,
+            "subQuestions": [
+              {
+                "id": "pilot_welcome",
+                "type": "single-choice",
+                "title": "Pilot interest:",
+                "required": true,
+                "visibility": "VISIBLE",
+                "order": 1,
+                "options": [
+                  {
+                    "id": "Yes",
+                    "label": "Yes"
+                  },
+                  {
+                    "id": "Maybe, please call me",
+                    "label": "Maybe, please call me"
+                  },
+                  {
+                    "id": "No",
+                    "label": "No"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "logic": [],
+    "createdAt": "2025-10-01T00:00:00.000Z",
+    "updatedAt": "2026-10-03T05:34:30.815Z",
+    "responseCount": 1
+  },
+  {
+    "id": "surv_saas_csat_01",
+    "slug": "customer-feedback-survey",
+    "title": "Product Experience & Customer Feedback",
+    "description": "Help us understand your workflow efficiency, NPS satisfaction, and feature priorities.",
+    "purpose": "Continuous discovery to refine developer tool speed, accuracy, and support responsiveness.",
+    "industry": "Enterprise SaaS & Cloud",
+    "status": "DRAFT",
+    "version": 4,
+    "company": {
+      "name": "Apex Cloud Technologies",
+      "tagline": "Enterprise Cloud Infrastructure Solutions",
+      "description": "Provider of high-reliability cloud orchestration tools for engineering teams worldwide.",
+      "industry": "Enterprise Cloud",
+      "website": "https://apexcloud.example.com",
+      "primaryContactName": "Apex Product Team",
+      "primaryContactEmail": "product@apexcloud.example.com",
+      "location": "Mumbai, India",
+      "brandPrimaryColor": "#1E293B",
+      "brandSecondaryColor": "#3B82F6"
+    },
+    "settings": {
+      "allowMultipleResponses": false,
+      "isAnonymous": false,
+      "requireEmail": true,
+      "showProgressIndicator": true,
+      "showQuestionNumbers": true,
+      "completionMessage": "Thank you for your feedback! Our engineering leads review each submission weekly.",
+      "brandColor": "#3B82F6",
+      "estCompletionMinutes": 3
+    },
+    "sections": [
+      {
+        "id": "sec_nps_eval",
+        "title": "1. Core Satisfaction & Utility",
+        "order": 1,
+        "visibility": "VISIBLE",
+        "questions": [
+          {
+            "id": "nps_rating",
+            "type": "linear-scale",
+            "title": "How likely are you to recommend our platform to a colleague?",
+            "min": 0,
+            "max": 10,
+            "minLabel": "Not Likely",
+            "maxLabel": "Extremely Likely",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 1
+          },
+          {
+            "id": "primary_use_case",
+            "type": "single-choice",
+            "title": "What is your team's primary use case?",
+            "required": true,
+            "visibility": "VISIBLE",
+            "order": 2,
+            "options": [
+              {
+                "id": "dev_testing",
+                "label": "Dev & Automated Testing"
+              },
+              {
+                "id": "prod_deploy",
+                "label": "Production Microservices Deployment"
+              },
+              {
+                "id": "ai_inference",
+                "label": "AI Model Serving & Inference"
+              },
+              {
+                "id": "cost_opt",
+                "label": "Cloud Cost Optimization"
+              }
+            ]
+          },
+          {
+            "id": "feature_wishes",
+            "type": "long-text",
+            "title": "What is one feature we should build next to accelerate your team?",
+            "placeholder": "Share your top priority...",
+            "required": false,
+            "visibility": "VISIBLE",
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "logic": [],
+    "createdAt": "2026-01-15T00:00:00.000Z",
+    "updatedAt": "2026-10-03T11:28:01.374Z",
+    "responseCount": 0
+  }
+]

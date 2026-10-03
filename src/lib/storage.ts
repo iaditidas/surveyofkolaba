@@ -55,8 +55,8 @@ export async function saveSurveyResponse(response: SurveyResponse): Promise<{ su
     try {
       const supabaseAdmin = getServiceSupabase();
       if (supabaseAdmin) {
-        const { error } = await supabaseAdmin.from("survey_responses").insert({
-          id: response.id,
+        const effectiveSurveyId = (response.metadata?.surveyId as string) || "eng-ai-colleges-2025";
+        const metaPayload = {
           respondent_type: response.respondent_type,
           respondent_type_label: response.respondent_type_label,
           respondent_name: response.respondent_name,
@@ -67,19 +67,27 @@ export async function saveSurveyResponse(response: SurveyResponse): Promise<{ su
           phone: response.phone || null,
           answers: response.answers,
           survey_path: response.survey_path,
-          pilot_interest: String(response.pilot_interest || false),
+          pilot_interest: response.pilot_interest,
           consent: response.consent,
           time_spent_seconds: response.time_spent_seconds || 0,
-          metadata: response.metadata || {},
+          submitted_at: response.created_at,
+          surveyId: effectiveSurveyId,
+          ...response.metadata,
+        };
+
+        const { error } = await supabaseAdmin.from("responses").insert({
+          survey_id: effectiveSurveyId,
+          respondent_email: response.email,
           created_at: response.created_at,
+          metadata: metaPayload,
         });
 
         if (error) {
-          console.warn("[Supabase Insert Warning] Could not insert to Supabase, local copy saved:", error.message);
+          console.warn("[Supabase Insert Notice] Write notice (local copy preserved):", error.message);
         }
       }
     } catch (err) {
-      console.warn("[Supabase Sync Warning] Failed to reach Supabase, local copy maintained:", err);
+      console.warn("[Supabase Sync Notice] Local copy maintained:", err);
     }
   }
 
@@ -93,37 +101,73 @@ export async function getAllResponses(): Promise<SurveyResponse[]> {
       const supabaseAdmin = getServiceSupabase();
       if (supabaseAdmin) {
         const { data, error } = await supabaseAdmin
-          .from("survey_responses")
+          .from("responses")
           .select("*")
           .order("created_at", { ascending: false });
 
         if (!error && data && data.length > 0) {
-          return data.map((row: any) => ({
-            id: row.id,
-            respondent_type: row.respondent_type,
-            respondent_type_label: row.respondent_type_label,
-            respondent_name: row.respondent_name,
-            college: row.college,
-            department: row.department,
-            role: row.role,
-            email: row.email,
-            phone: row.phone,
-            answers: row.answers || {},
-            survey_path: row.survey_path || [],
-            pilot_interest: row.pilot_interest === "true" || row.pilot_interest === true ? true : row.pilot_interest,
-            consent: row.consent,
-            created_at: row.created_at,
-            time_spent_seconds: row.time_spent_seconds,
-            metadata: row.metadata || {},
-          }));
+          return data.map((row: any) => {
+            const meta = row.metadata || {};
+            return {
+              id: row.id,
+              respondent_type: meta.respondent_type || "general",
+              respondent_type_label: meta.respondent_type_label || "Respondent",
+              respondent_name: meta.respondent_name || "Anonymous Respondent",
+              college: meta.college || "Not Specified",
+              department: meta.department || "",
+              role: meta.role || "",
+              email: row.respondent_email || meta.email || "",
+              phone: meta.phone || "",
+              answers: meta.answers || {},
+              survey_path: meta.survey_path || [],
+              pilot_interest: meta.pilot_interest === "true" || meta.pilot_interest === true,
+              consent: meta.consent !== false,
+              created_at: row.created_at,
+              time_spent_seconds: meta.time_spent_seconds || 0,
+              metadata: {
+                ...meta,
+                surveyId: row.survey_id || meta.surveyId || meta.survey_id || "eng-ai-colleges-2025",
+              },
+            };
+          });
         }
       }
     } catch (err) {
-      console.warn("Supabase fetch failed, falling back to local file:", err);
+      console.warn("Supabase fetch notice, falling back to local file:", err);
     }
   }
 
   return getLocalResponses();
+}
+
+// Check if respondent already submitted a response for a survey (prevent duplicates)
+export async function hasAlreadySubmitted(surveyId: string, email?: string, phone?: string): Promise<boolean> {
+  try {
+    const all = await getAllResponses();
+    const cleanEmail = (email || "").trim().toLowerCase();
+    const cleanPhone = (phone || "").replace(/\D/g, "").slice(-10);
+
+    if (!cleanEmail && !cleanPhone) return false;
+
+    return all.some((r) => {
+      const rSurveyId = (r.metadata?.surveyId as string) || "eng-ai-colleges-2025";
+      const targetSurveyId = surveyId || "eng-ai-colleges-2025";
+      const sameSurvey = rSurveyId === targetSurveyId;
+
+      if (!sameSurvey) return false;
+
+      const rEmail = (r.email || "").trim().toLowerCase();
+      const rPhone = (r.phone || "").replace(/\D/g, "").slice(-10);
+
+      if (cleanEmail && rEmail && cleanEmail === rEmail) return true;
+      if (cleanPhone && rPhone && cleanPhone === rPhone) return true;
+
+      return false;
+    });
+  } catch (err) {
+    console.error("Error checking duplicate submission:", err);
+    return false;
+  }
 }
 
 // Get single response by ID

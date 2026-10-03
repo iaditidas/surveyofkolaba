@@ -11,6 +11,8 @@ import {
   LogOut,
   Cpu,
   ArrowLeft,
+  ListTodo,
+  FileBox,
 } from "lucide-react";
 
 export default function AdminNav() {
@@ -25,10 +27,28 @@ export default function AdminNav() {
 
   const navItems = [
     {
-      label: "Responses & Overview",
+      label: "Dashboard",
       href: "/admin/dashboard",
       icon: LayoutDashboard,
-      active: pathname === "/admin/dashboard" || pathname === "/admin/responses",
+      active: pathname === "/admin/dashboard",
+    },
+    {
+      label: "Surveys",
+      href: "/admin/surveys",
+      icon: ListTodo,
+      active: pathname === "/admin/surveys" || pathname.startsWith("/admin/surveys/"),
+    },
+    {
+      label: "Templates",
+      href: "/admin/templates",
+      icon: FileBox,
+      active: pathname === "/admin/templates",
+    },
+    {
+      label: "Responses",
+      href: "/admin/responses",
+      icon: FileText,
+      active: pathname === "/admin/responses",
     },
     {
       label: "Analytics & Trends",
@@ -77,24 +97,34 @@ export default function AdminNav() {
               );
             })}
 
+            {/* Exit to Public Website */}
+            <Link
+              href="/"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors border border-slate-200"
+              title="Exit Admin to Public Website"
+            >
+              <ArrowLeft className="w-4 h-4 text-slate-500" />
+              <span className="hidden sm:inline">Exit to Site</span>
+            </Link>
+
             {/* Direct CSV Export Button */}
             <a
               href="/api/admin/responses?format=csv"
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors border border-slate-200"
+              className="hidden lg:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors border border-slate-200"
               title="Download CSV"
             >
               <Download className="w-4 h-4 text-slate-600" />
-              <span className="hidden md:inline">Export CSV</span>
+              <span>Export CSV</span>
             </a>
 
-            {/* Logout */}
+            {/* Logout / Sign Out */}
             <button
               onClick={handleLogout}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
-              title="Sign Out"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-bold text-rose-600 bg-rose-50 hover:bg-rose-100 border border-rose-200 transition-colors"
+              title="Sign Out of Admin"
             >
               <LogOut className="w-4 h-4" />
-              <span className="hidden md:inline">Sign Out</span>
+              <span>Sign Out</span>
             </button>
           </div>
         </div>

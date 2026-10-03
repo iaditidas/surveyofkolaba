@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { saveSurveyResponse } from "@/lib/storage";
+import { saveSurveyResponse, hasAlreadySubmitted } from "@/lib/storage";
 import { sendSurveyEmail } from "@/lib/email";
 import { SurveyResponse, RespondentType } from "@/types/survey";
 import { PERSONA_INFO } from "@/lib/survey-data";
@@ -27,6 +27,21 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         { error: "Missing or invalid required fields (respondent_type, valid email)" },
         { status: 400 }
+      );
+    }
+
+    const cleanPhone = (phone || "").replace(/\D/g, "").slice(-10);
+    const surveyId = (body.survey_id as string) || (metadata?.surveyId as string) || "eng-ai-colleges-2025";
+
+    // Strict duplicate check: once submitted, cannot submit another response for the same survey
+    const isDuplicate = await hasAlreadySubmitted(surveyId, email, cleanPhone);
+    if (isDuplicate) {
+      return NextResponse.json(
+        {
+          error: "You have already submitted a response for this survey. Multiple submissions from the same account are not permitted.",
+          alreadySubmitted: true,
+        },
+        { status: 409 }
       );
     }
 

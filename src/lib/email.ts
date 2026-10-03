@@ -111,8 +111,9 @@ function formatAnswerHtml(val: any): string {
   return `<div style="color: #1e293b; font-size: 14px;">${escapeHtml(String(val))}</div>`;
 }
 
-function escapeHtml(str: string): string {
-  return str
+function escapeHtml(str: any): string {
+  if (str === undefined || str === null) return "";
+  return String(str)
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
@@ -130,54 +131,58 @@ export function generateEmailContent(response: SurveyResponse) {
 
   const subject = `[Kolaba Survey] New ${response.respondent_type_label || "Response"} — ${response.respondent_name} (${response.college || "Campus"})`;
 
-  // Build survey answers formatted list
-  const answersListHtml =
-    response.survey_path && response.survey_path.length > 0
-      ? response.survey_path
-          .map(
-            (step, idx) => `
-            <div style="margin-bottom: 16px; padding: 14px 16px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
-              <div style="font-size: 11px; font-weight: 700; color: #0d9488; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">
-                Question ${step.stepNumber || idx + 1} &bull; ${escapeHtml(step.questionId)}
-              </div>
-              <div style="font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.4;">
-                ${escapeHtml(step.questionTitle || step.questionId)}
-              </div>
-              <div style="background: #ffffff; padding: 10px 14px; border-radius: 6px; border: 1px solid #cbd5e1;">
-                ${formatAnswerHtml(step.rawAnswer !== undefined ? step.rawAnswer : step.answerSummary)}
-              </div>
-            </div>
-          `
-          )
-          .join("")
-      : Object.entries(response.answers || {})
-          .map(
-            ([qKey, qVal]) => `
-            <div style="margin-bottom: 12px; padding: 12px 14px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
-              <div style="font-size: 11px; font-weight: 700; color: #0d9488; text-transform: uppercase; margin-bottom: 4px;">${escapeHtml(
-                qKey
-              )}</div>
-              <div style="background: #ffffff; padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1;">
-                ${formatAnswerHtml(qVal)}
-              </div>
-            </div>
-          `
-          )
-          .join("");
+  // Build survey answers formatted list (handles structured SurveyPathStep[] or raw answers map)
+  const hasValidPath =
+    Array.isArray(response.survey_path) &&
+    response.survey_path.length > 0 &&
+    typeof response.survey_path[0] === "object" &&
+    response.survey_path[0] !== null;
 
-  const answersListText =
-    response.survey_path && response.survey_path.length > 0
-      ? response.survey_path
-          .map(
-            (step, idx) =>
-              `Question ${step.stepNumber || idx + 1} (${step.questionId}): ${step.questionTitle}\nAnswer: ${formatAnswerText(
-                step.rawAnswer !== undefined ? step.rawAnswer : step.answerSummary
-              )}\n`
-          )
-          .join("\n")
-      : Object.entries(response.answers || {})
-          .map(([qKey, qVal]) => `${qKey}: ${formatAnswerText(qVal)}`)
-          .join("\n");
+  const answersListHtml = hasValidPath
+    ? (response.survey_path as any[])
+        .map(
+          (step, idx) => `
+          <div style="margin-bottom: 16px; padding: 14px 16px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+            <div style="font-size: 11px; font-weight: 700; color: #0d9488; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">
+              Question ${step.stepNumber || idx + 1} &bull; ${escapeHtml(step.questionId || `Q${idx + 1}`)}
+            </div>
+            <div style="font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 8px; line-height: 1.4;">
+              ${escapeHtml(step.questionTitle || step.questionId || "Question")}
+            </div>
+            <div style="background: #ffffff; padding: 10px 14px; border-radius: 6px; border: 1px solid #cbd5e1;">
+              ${formatAnswerHtml(step.rawAnswer !== undefined ? step.rawAnswer : step.answerSummary)}
+            </div>
+          </div>
+        `
+        )
+        .join("")
+    : Object.entries(response.answers || {})
+        .map(
+          ([qKey, qVal]) => `
+          <div style="margin-bottom: 12px; padding: 12px 14px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+            <div style="font-size: 11px; font-weight: 700; color: #0d9488; text-transform: uppercase; margin-bottom: 4px;">${escapeHtml(
+              qKey
+            )}</div>
+            <div style="background: #ffffff; padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1;">
+              ${formatAnswerHtml(qVal)}
+            </div>
+          </div>
+        `
+        )
+        .join("");
+
+  const answersListText = hasValidPath
+    ? (response.survey_path as any[])
+        .map(
+          (step, idx) =>
+            `Question ${step.stepNumber || idx + 1} (${step.questionId || `Q${idx + 1}`}): ${step.questionTitle || "Question"}\nAnswer: ${formatAnswerText(
+              step.rawAnswer !== undefined ? step.rawAnswer : step.answerSummary
+            )}\n`
+        )
+        .join("\n")
+    : Object.entries(response.answers || {})
+        .map(([qKey, qVal]) => `${qKey}: ${formatAnswerText(qVal)}`)
+        .join("\n");
 
   const html = `
     <!DOCTYPE html>

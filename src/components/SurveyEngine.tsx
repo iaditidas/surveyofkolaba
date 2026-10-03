@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useTransition } from "react";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import ProgressBar from "./ProgressBar";
@@ -17,12 +18,16 @@ import {
   FLOWS_BY_PERSONA,
   PERSONA_INFO,
 } from "@/lib/survey-data";
-import { Cpu, Users, Award, ShieldAlert, Sparkles } from "lucide-react";
+import { Cpu, Users, Award, ShieldAlert, Sparkles, CheckCircle2 } from "lucide-react";
+import RespondentAuthModal, { RespondentUser } from "./RespondentAuthModal";
 
 export default function SurveyEngine() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialRole = searchParams.get("role") as RespondentType | null;
+
+  const [respondentUser, setRespondentUser] = useState<RespondentUser | null>(null);
+  const [showAuthModal, setShowAuthModal] = useState<boolean>(true);
 
   const [respondentType, setRespondentType] = useState<RespondentType | null>(
     initialRole && FLOWS_BY_PERSONA[initialRole] ? initialRole : null
@@ -41,6 +46,69 @@ export default function SurveyEngine() {
   } | null>(null);
 
   const [startTime] = useState<number>(() => Date.now());
+
+  const [alreadySubmitted, setAlreadySubmitted] = useState<boolean>(false);
+
+  // Check existing authenticated respondent session
+  useEffect(() => {
+    try {
+      const stored = sessionStorage.getItem("kolaba_respondent_user") || localStorage.getItem("kolaba_respondent_user");
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed && (parsed.phone || parsed.email)) {
+          setRespondentUser(parsed);
+          setShowAuthModal(false);
+          prefillContactDetails(parsed);
+          checkDuplicateSubmission(parsed);
+        }
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  const checkDuplicateSubmission = async (user: RespondentUser) => {
+    // Check local storage flag first
+    if (typeof window !== "undefined") {
+      const localFlag = localStorage.getItem(`kolaba_submitted_eng-ai-colleges-2025_${user.phone || user.email}`);
+      if (localFlag) {
+        setAlreadySubmitted(true);
+        return;
+      }
+    }
+
+    try {
+      const query = new URLSearchParams({
+        surveyId: "eng-ai-colleges-2025",
+        email: user.email || "",
+        phone: user.phone || "",
+      });
+      const res = await fetch(`/api/survey/check-submission?${query.toString()}`);
+      const data = await res.json();
+      if (data.alreadySubmitted) {
+        setAlreadySubmitted(true);
+      }
+    } catch {
+      // silent
+    }
+  };
+
+  const prefillContactDetails = (user: RespondentUser) => {
+    setAnswers((prev) => ({
+      ...prev,
+      A10: { ...(prev.A10 || {}), contact_name: user.name, contact_email: user.email, contact_phone: user.phone },
+      B10: { ...(prev.B10 || {}), contact_name: user.name, contact_email: user.email, contact_phone: user.phone },
+      C10: { ...(prev.C10 || {}), contact_name: user.name, contact_email: user.email, contact_phone: user.phone },
+      D10: { ...(prev.D10 || {}), contact_name: user.name, contact_email: user.email, contact_phone: user.phone },
+    }));
+  };
+
+  const handleAuthenticated = (user: RespondentUser) => {
+    setRespondentUser(user);
+    setShowAuthModal(false);
+    prefillContactDetails(user);
+    checkDuplicateSubmission(user);
+  };
 
   // Determine current active flow questions
   const activeQuestions: QuestionDefinition[] = respondentType
@@ -183,9 +251,18 @@ export default function SurveyEngine() {
 
     // Extract contact details based on role
     const lastAns = answers[currentQuestion.id] || {};
-    let respondentName = lastAns.contact_name || "Anonymous Respondent";
-    let email = lastAns.contact_email || "";
-    let phone = lastAns.contact_phone || "";
+    let respondentName =
+      lastAns.contact_name ||
+      respondentUser?.name ||
+      "Anonymous Respondent";
+    let email =
+      lastAns.contact_email ||
+      respondentUser?.email ||
+      "";
+    let phone =
+      lastAns.contact_phone ||
+      respondentUser?.phone ||
+      "";
     let college =
       lastAns.contact_college ||
       answers["B1"]?.college_name ||
@@ -223,6 +300,10 @@ export default function SurveyEngine() {
       pilot_interest: pilotInterest,
       consent: lastAns.consent !== false,
       time_spent_seconds: timeSpent,
+      metadata: {
+        surveyId: "eng-ai-colleges-2025",
+        surveyTitle: "Kolaba Cloud AI — Engineering Colleges Program",
+      },
     };
 
     try {
@@ -234,7 +315,18 @@ export default function SurveyEngine() {
 
       const data = await res.json();
 
+      if (res.status === 409 || data.alreadySubmitted) {
+        setAlreadySubmitted(true);
+        if (typeof window !== "undefined") {
+          localStorage.setItem(`kolaba_submitted_eng-ai-colleges-2025_${phone || email}`, "true");
+        }
+        return;
+      }
+
       if (res.ok && data.success) {
+        if (typeof window !== "undefined") {
+          localStorage.setItem(`kolaba_submitted_eng-ai-colleges-2025_${phone || email}`, "true");
+        }
         setCompletedResponse({
           id: data.id,
           type: respondentType,
@@ -261,6 +353,48 @@ export default function SurveyEngine() {
     setCompletedResponse(null);
   };
 
+  // If already submitted from this account, prevent duplicate submissions
+  if (alreadySubmitted) {
+    return (
+      <div className="min-h-[75vh] flex items-center justify-center p-4">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="max-w-lg w-full bg-white border border-slate-200 rounded-3xl p-8 sm:p-10 text-center space-y-6 shadow-xl"
+        >
+          <div className="w-16 h-16 rounded-2xl bg-teal-50 text-teal-600 border border-teal-200 flex items-center justify-center mx-auto shadow-sm">
+            <CheckCircle2 className="w-8 h-8" />
+          </div>
+
+          <div className="space-y-2">
+            <span className="text-xs font-bold text-teal-700 uppercase tracking-wider bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
+              One Response Per Participant
+            </span>
+            <h2 className="text-2xl font-black text-slate-900 tracking-tight mt-2">
+              Response Already Recorded
+            </h2>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              Our records show that you have already submitted your response for this survey using{" "}
+              <strong className="text-slate-900 font-semibold">{respondentUser?.email || respondentUser?.phone || "this account"}</strong>.
+            </p>
+            <p className="text-xs text-slate-500 leading-relaxed">
+              To protect statistical accuracy and academic research integrity, duplicate submissions are restricted. Thank you for sharing your perspective!
+            </p>
+          </div>
+
+          <div className="pt-4 border-t border-slate-100 flex items-center justify-center gap-3">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0B132B] text-white text-sm font-bold hover:bg-slate-800 transition-colors shadow-sm"
+            >
+              <span>Return to Overview</span>
+            </Link>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
+
   // If completed, show celebratory screen
   if (completedResponse) {
     return (
@@ -271,6 +405,16 @@ export default function SurveyEngine() {
         college={completedResponse.college}
         pilotInterest={completedResponse.pilotInterest}
         onReset={handleResetSurvey}
+      />
+    );
+  }
+
+  // If not authenticated, gate the survey with the Respondent Verification Screen
+  if (showAuthModal && !respondentUser) {
+    return (
+      <RespondentAuthModal
+        onAuthenticated={handleAuthenticated}
+        surveyTitle="Engineering Colleges AI Infrastructure Survey"
       />
     );
   }

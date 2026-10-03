@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { saveSurveyResponse } from "@/lib/storage";
+import { saveSurveyResponse, hasAlreadySubmitted } from "@/lib/storage";
 import { sendSurveyEmail } from "@/lib/email";
 import { SurveyResponse, RespondentType } from "@/types/survey";
 import { PERSONA_INFO } from "@/lib/survey-data";
@@ -98,6 +98,21 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const cleanPhone = (body.phone || body.answers?.contact_phone || body.answers?.D10?.contact_phone || "").replace(/\D/g, "").slice(-10);
+    const surveyId = (body.metadata?.surveyId as string) || "eng-ai-colleges-2025";
+
+    // Strict duplicate check: once submitted, cannot submit another response for the same survey
+    const isDuplicate = await hasAlreadySubmitted(surveyId, email, cleanPhone);
+    if (isDuplicate) {
+      return NextResponse.json(
+        {
+          error: "You have already submitted a response for this survey. Multiple submissions from the same account are not permitted.",
+          alreadySubmitted: true,
+        },
+        { status: 409 }
+      );
+    }
+
     // Duplicate submission guard (e.g. rapid double clicks)
     const duplicateKey = `${email.toLowerCase()}_${respondentType}`;
     const now = Date.now();
@@ -131,6 +146,8 @@ export async function POST(req: NextRequest) {
       created_at: body.submittedAt || new Date().toISOString(),
       metadata: {
         ...body.metadata,
+        surveyId: surveyId,
+        surveyTitle: body.metadata?.surveyTitle || "Kolaba Cloud AI — Engineering Colleges Program",
         userAgent: req.headers.get("user-agent") || "",
         ip: req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "local",
       },
